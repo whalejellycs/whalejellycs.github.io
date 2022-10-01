@@ -1,0 +1,80 @@
+<html>
+  
+<head>
+    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+<title>From Fiction to Life</title>
+<link rel="icon" type="image/x-icon" href="https://aphilosopherchair.files.wordpress.com/2014/04/cropped-lavender-chair1.jpg" />
+
+    <style>
+     body   {
+            background-color: black;
+            color: #3d6b53; 
+            font-family: Helvetica
+        }
+        h1, p, pre {
+            background-color: black;
+            color: #D0D9CD;
+            font-family: Helvetica
+        }
+    </style>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+
+<!-- Configure and load Thebe !-->
+<script type="text/x-thebe-config">
+    {
+      bootstrap: true,
+      requestKernel: true,
+      binderOptions: {
+        repo: "matplotlib/ipympl",
+        ref: "0.6.1",
+        repoProvider: "github",
+      },
+      mountRunButton: false, 
+      mountRestartButton: false, 
+      mountRestartallButton: true
+    }
+</script>
+
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+</head>
+  
+
+<body >
+    
+<h1>Extraordinary Attorney Woo Poll Analysis</h1>
+    
+<p>
+      Click the run button and wait for the graph to appear. Move the slider bar around to see the potential impact of demographics on
+    the results. The actual percentage of diagnosed/suspected autistic respondents is 21.1%.
+    </p>
+
+  
+<!--<div class="thebe-activate"></div>-->
+    
+<div class="thebe-status"></div>
+
+
+<pre data-executable data-readonly data-language="python">
+analysis=open('./eawbya.py')
+exec(analysis.read())
+analysis.close()
+</pre>
+
+
+  
+    
+
+<p>
+      Note: this page also contains the built in status widget - see
+      <a href="./demo-status-widget.html">demo-status-widget.html</a> for more
+      info.
+    </p>
+  
+</body>
+
+</html>
