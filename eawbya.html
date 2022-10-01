@@ -52,7 +52,6 @@
     
 <div class="thebe-status"></div>
 
-<font color='red'>
 <pre data-executable data-readonly data-language="python">
 !pip install pandas
 !pip install seaborn
@@ -60,10 +59,10 @@
 %matplotlib widget
 import urllib.request
 analysis = urllib.request.urlopen('https://whalejellycs.github.io/eawbya.txt')
-exec(analysis.read())
-#analysis.close()
-</pre></font>
-
+analysis_str = analysis.read()
+analysis.close()
+exec(analysis_str)
+</pre>
   
 </body>
 
