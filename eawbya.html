@@ -9,7 +9,7 @@
 
     <style>
      body   {
-            background-color:  #3d6b53;
+            background-color: #D0D9CD;
             color: black; 
             font-family: Helvetica
         }
@@ -54,6 +54,8 @@
 
 <font color='red'>
 <pre data-executable data-readonly data-language="python">
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 !pip install pandas
 !pip install seaborn
 !pip install IPython
