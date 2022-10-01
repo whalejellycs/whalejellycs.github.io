@@ -13,7 +13,7 @@
             color: #3d6b53; 
             font-family: Helvetica
         }
-        h1, p, pre {
+        h1, p, pre, #top
             background-color: black;
             color: #D0D9CD;
             font-family: Helvetica
@@ -51,11 +51,18 @@
 
 <body >
     
-<h1>Extraordinary Attorney Woo Poll Analysis</h1>
-    
-<p>When the status shows <span id="ready">&nbsp;READY&nbsp;</span>, click the run button and wait for the graph to appear. Move the slider bar around, with another wait in between each rendering, to see the potential impact of demographics on the results. 
-  The actual percentage of diagnosed/suspected autistic respondents is 21.1%.
-</p>
+    <div style="position: fixed; top: 0; left: 0;height:10%;z-index:2; " id="top">
+        <h1 style="margin-bottom:0">Extraordinary Attorney Woo Poll Analysis</h1>
+        <p style="margin-top: 0; margin-bottom: 0">
+            <br />
+            When the status shows <span id="ready">&nbsp;READY&nbsp;</span>, click the run button and wait for the graph to appear. Move the slider bar around to see the potential impact of demographics on the results.
+            The actual percentage of diagnosed/suspected autistic respondents is 21.1%.
+        </p>
+        <p style="margin-top:0">&nbsp;
+          </p>
+    </div>
+
+ <div style="position:relative;margin-top:10%;z-index:1"> 
 
   
 <!--<div class="thebe-activate"></div>-->
@@ -79,6 +86,7 @@ analysis.close()
 print('\x1b[6;30;42m' + 'Graph rendering in progress . . .' + '\033[30m')
 exec(analysis_str)
 </pre>
+</div>
 </div>
   
 </body>
