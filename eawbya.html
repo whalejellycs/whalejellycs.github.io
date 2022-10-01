@@ -54,9 +54,8 @@
 
 <font color='red'>
 <pre data-executable data-readonly data-language="python">
-import sys
-with open(‘file’, ‘w’) as sys.stdout:
-    print('test')
+import logging
+logging.basicConfig(level = logging.DEBUG)
 !pip install pandas
 !pip install seaborn
 !pip install IPython
