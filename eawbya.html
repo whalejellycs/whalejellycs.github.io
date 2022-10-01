@@ -64,8 +64,7 @@
 !pip install IPython
 %matplotlib widget
 import urllib.request
-#a = urllib.request.urlopen('./eawbya.txt')
-analysis=open('./eawbya.txt')
+analysis = urllib.request.urlopen('./eawbya.txt')
 exec(analysis.read())
 analysis.close()
 </pre></font>
