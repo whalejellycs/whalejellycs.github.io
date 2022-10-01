@@ -1,0 +1,80 @@
+!pip install pandas
+!pip install seaborn
+!pip install IPython
+%matplotlib widget
+
+import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
+from ipywidgets import interactive, widgets
+from IPython.display import display
+slider = widgets.IntSlider(value=5,min=0,max=100,description="% of diagnosed/supected autistic persons",
+style = {'description_width': 'initial'},
+layout = widgets.Layout(width='50%'))
+
+Q1byA=pd.DataFrame({'Allistics': {'None of the above': 3,
+'Autistic school teammate': 32,
+'Autistic housemate': 22,
+'Autistic subordinate': 25,
+'Autistic co-worker of the same rank in the same work unit': 35,
+'Autistic boss': 24,
+'Autistic blue-collar worker serving you': 30,
+'Autistic white-collar worker serving you': 31,
+'Autistic short-term romantic partner': 13,
+'Autistic long-term romantic partner': 12,
+'Autistic adoptive child': 15,
+'Autistic child-in-law': 19,
+'Higher taxes to support the autistic community': 26,
+'Diverting tax revenue from other critical areas \nto support the autistic community': 22},
+'Autistics': {'None of the above': 1,
+'Autistic school teammate': 7,
+'Autistic housemate': 7,
+'Autistic subordinate': 7,
+'Autistic co-worker of the same rank in the same work unit': 7,
+'Autistic boss': 6,
+'Autistic blue-collar worker serving you': 5,
+'Autistic white-collar worker serving you': 5,
+'Autistic short-term romantic partner': 5,
+'Autistic long-term romantic partner': 7,
+'Autistic adoptive child': 5,
+'Autistic child-in-law': 6,
+'Higher taxes to support the autistic community': 9,
+'Diverting tax revenue from other critical areas \nto support the autistic community': 7}},index=['None of the above',
+'Autistic school teammate',
+'Autistic housemate',
+'Autistic subordinate',
+'Autistic co-worker of the same rank in the same work unit',
+'Autistic boss',
+'Autistic blue-collar worker serving you',
+'Autistic white-collar worker serving you',
+'Autistic short-term romantic partner',
+'Autistic long-term romantic partner',
+'Autistic adoptive child',
+'Autistic child-in-law',
+'Higher taxes to support the autistic community',
+'Diverting tax revenue from other critical areas \nto support the autistic community'],columns=["Allistics","Autistics"])
+
+sn.set()
+plt.style.use('dark_background')
+
+def weighted_display(weight=5):
+    '''weight: weight in percentage'''
+    fig=plt.figure()
+    ax=plt.subplot(1,1,1)
+    Q1byWdisplayDF=((100-weight)/100*Q1byA.iloc[:,0]/45+weight/100*Q1byA.iloc[:,1]/12)*100
+    Q1byWdisplayDF=Q1byWdisplayDF.sort_values()
+    ax=Q1byWdisplayDF.plot.barh(ax=ax,legend=None,color='orangered',figsize=(12,12))
+
+    plt.xlabel('% of the weighted combination of eligible respondents')
+
+    ax.set_title("Which of the following, if any, has watching Extraordinary Attorney Woo \nmade you more willing to accept?\n\n\n",
+    color='lightgreen')
+    ax.text(0.5,1.05,"({}% Allistics + {}% Diagnosed/suspected Autistics, Multiple options possible)".format(100-weight,weight),
+    ha='center',va='top',transform=ax.transAxes,color='g')
+    ax.text(-1.1,0,"Total number of eligible respondents: {}".format(57),ha='left',va='bottom',transform=ax.transAxes,color='y')
+    ax.text(-1.1,-0.1,"(Total number of respondents: {})".format(57+1),ha='left',va='bottom',transform=ax.transAxes,color='y')
+    plt.subplots_adjust(left = 0.5)
+    plt.show() 
+
+interactive(weighted_display,weight=(0,100))
+output=widgets.interactive_output(weighted_display,{'weight':slider})
+display(slider)
+display(output)
