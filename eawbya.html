@@ -59,6 +59,10 @@
 
 <font color='red'>
 <pre data-executable data-readonly data-language="python">
+!pip install pandas
+!pip install seaborn
+!pip install IPython
+%matplotlib widget
 import urllib.request
 a = urllib.request.urlopen('./eawbya.txt')
 analysis=open('./eawbya.txt')
