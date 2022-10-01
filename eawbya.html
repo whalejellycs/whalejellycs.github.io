@@ -59,18 +59,19 @@
 
 <div style="background-color: #3d6b53">
 <pre data-executable data-readonly data-language="python">
-print('\x1b[6;30;42m' + 'Code execution in progress . . .' + '\033[30m')
+print('\x1b[6;30;42m' + 'Gathering analysis tools . . .' + '\033[30m')
 !pip install pandas
-print('\x1b[6;30;42m' + 'Code execution in progress . . .' + '\033[30m')
+print('\x1b[6;30;42m' + 'Gathering analysis tools . . .' + '\033[30m')
 !pip install seaborn
-print('\x1b[6;30;42m' + 'Code execution in progress . . .' + '\033[30m')
+print('\x1b[6;30;42m' + 'Gathering visulaization tools . . .' + '\033[30m')
 !pip install IPython
-print('\x1b[6;30;42m' + 'Code execution in progress . . .' + '\033[30m')
+print('\x1b[6;30;42m' + 'Gathering survey data . . .' + '\033[30m')
 %matplotlib widget
 import urllib.request
 analysis = urllib.request.urlopen('https://whalejellycs.github.io/eawbya.txt')
 analysis_str = analysis.read()
 analysis.close()
+print('\x1b[6;30;42m' + 'Graph rendering in progress . . .' + '\033[30m')
 exec(analysis_str)
 </pre>
 </div>
