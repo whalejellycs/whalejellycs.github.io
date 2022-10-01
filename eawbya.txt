@@ -47,8 +47,8 @@ Q1byA=pd.DataFrame({'Allistics': {'None of the above': 3,
 'Higher taxes to support the autistic community',
 'Diverting tax revenue from other critical areas \nto support the autistic community'],columns=["Allistics","Autistics"])
 
+sn.set()
 plt.style.use('dark_background')
-plt.grid(True)
 
 def weighted_display(weight=5):
     '''weight: weight in percentage'''
