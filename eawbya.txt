@@ -56,7 +56,7 @@ def weighted_display(weight=5):
     ax=plt.subplot(1,1,1)
     Q1byWdisplayDF=((100-weight)/100*Q1byA.iloc[:,0]/45+weight/100*Q1byA.iloc[:,1]/12)*100
     Q1byWdisplayDF=Q1byWdisplayDF.sort_values()
-    ax=Q1byWdisplayDF.plot.barh(ax=ax,legend=None,color='orangered',figsize=(12,12))
+    ax=Q1byWdisplayDF.plot.barh(ax=ax,legend=None,color='orangered',figsize=(12,9))
 
     plt.xlabel('% of the weighted combination of eligible respondents')
 
@@ -68,7 +68,7 @@ def weighted_display(weight=5):
     ax.text(-1.1,-0.1,"(Total number of respondents: {})".format(57+1),ha='left',va='bottom',transform=ax.transAxes,color='y')
     ax.text(-1.1,-0.2,"© Of Dough Pops and Dichromatic Panes",ha='left',va='bottom',transform=ax.transAxes,color='goldenrod')
     ax.text(-1.1,-0.25,"twitter.com/DramaPhilosophy",ha='left',va='bottom',transform=ax.transAxes,color='goldenrod')
-    plt.subplots_adjust(left = 0.5,bottom=0.2)
+    plt.subplots_adjust(left = 0.5,bottom=0.185)
     plt.show() 
 
 interactive(weighted_display,weight=(0,100))
