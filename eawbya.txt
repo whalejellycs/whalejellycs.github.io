@@ -1,7 +1,8 @@
 import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
 from ipywidgets import interactive, widgets
 from IPython.display import display
-slider = widgets.IntSlider(value=5,min=0,max=100,description="% of diagnosed/supected autistic persons",
+slider = widgets.FloatSlider(value = 5, min = 0, max = 100, readout_format=".2f",
+description = "% of diagnosed/supected autistic persons",
 style = {'description_width': 'initial'},
 layout = widgets.Layout(width='50%'))
 
