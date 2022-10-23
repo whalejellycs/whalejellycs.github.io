@@ -6,17 +6,17 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@DramaPhilosophy" />
     <meta name="twitter:site" content="@DramaPhilosophy" />
-    <meta name="twitter:title" content="Palpitations" />
-    <meta name="twitter:description" content="..." />
+    <meta name="twitter:title" content="22nd Suite Queen" />
+    <meta name="twitter:description" content="Makeup and mathematics are about packing and unpacking life's possibilities." />
     <meta name="twitter:image:src" content="https://whalejellycs.github.io/icons/lipstick.png" />
     <meta name="twitter:image:width" content="280" />
     <meta name="twitter:image:height" content="150" />
 
-    <meta property="og:title" content="Palpitations" />
-    <meta property="og:description" content="..." />
+    <meta property="og:title" content="22nd Suite Queen" />
+    <meta property="og:description" content="Makeup and mathematics are about packing and unpacking life's possibilities." />
     <meta property="og:image" content="https://whalejellycs.github.io/icons/lipstick.png" />
 
-    <title>Palpitations</title>
+    <title>22nd Suite Queen</title>
     <link rel="icon" type="image/x-icon" href="icons/lipstick.png" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
@@ -29,6 +29,33 @@
         #component1, #component2, #component3, #component4{
             cursor: pointer;
         }
+        .slider {
+            -webkit-appearance: none;
+            -webkit-transition: .2s;
+            border-radius: 22px;
+            background-color: rgb(189,145,145);
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 23px;
+            height: 24px;
+            background-image: url('https://whalejellycs.github.io/icons/lipstick.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            box-shadow: -100px 0 0 100px deeppink;
+        }
+        .slider::-moz-range-thumb { /*for Firefox*/
+            width: 23px;
+            height: 24px;
+            background-image: url('https://whalejellycs.github.io/icons/lipstick.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            box-shadow: -100px 0 0 100px deeppink;
+        }
     </style>
     <body>
         Click on right-hand-side components to <strong>activate</strong>/<strong><font style="color:rgba(250, 232, 243,0.5)">deactivate</font></strong>! &nbsp;
@@ -40,6 +67,10 @@
                 <span id="component4" onclick=changecomponent('component4')>sin(πax)</span>
             </center>
         </h1>
+
+        a: <input id="slider" type="range" min="-30" max="30" value="20" class="slider" /><label id="sliderOutput">20</label>
+        <p></p>
+
         <canvas id="ecgDiagram" style="width:100%"></canvas>
 
         <script>
@@ -50,7 +81,21 @@
             var coeff3 = 1;
             var coeff4 = 1;
 
-            var a = 20;
+            var a = 20; //default value
+            var slider = document.getElementById('slider');
+            var sliderOuput = document.getElementById('sliderOutput');
+            slider.oninput = function () {
+                sliderOutput.innerHTML = slider.value;
+                a = slider.value;
+                ecg.destroy();
+                //xValues = [];  //!!! Purging the values this way makes the chart unresponsive to changes in the formula.
+                //yValues = [];  //!!! Purging the values this way makes the chart unresponsive to changes in the formula.
+                refreshEqn();
+                ecg = new Chart("ecgDiagram", {
+                    type: "line", data: data, options: options
+                });
+            }
+
             var xValues = [];
             var yValues = [];
             refreshEqn();
@@ -119,8 +164,8 @@
                     document.getElementById(id).style.color = 'rgba(250, 232, 243,1)';
                 }
                 ecg.destroy();
-                //xValues = [];  //!!! Purging the values makes the chart unresponsive to changes in the formula.
-                //yValues = [];  //!!! Purging the values makes the chart unresponsive to changes in the formula.
+                //xValues = [];  //!!! Purging the values this way makes the chart unresponsive to changes in the formula.
+                //yValues = [];  //!!! Purging the values this way makes the chart unresponsive to changes in the formula.
                 refreshEqn();
                 ecg = new Chart("ecgDiagram", {
                     type: "line", data: data, options: options
@@ -140,7 +185,6 @@
 
             function refreshEqn() {
                 generateValues("coeff1*Math.pow(Math.pow(x,2),1/3)+Math.pow(0.9,coeff2)*Math.pow(Math.pow(8-Math.pow(x,2),coeff3),Math.pow(0.5,coeff2))*Math.pow(Math.sin(Math.PI*a*x),coeff4)", -3, 3.1, 0.001);
-
             }
 
         </script>
