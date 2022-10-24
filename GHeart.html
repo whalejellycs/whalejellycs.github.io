@@ -61,13 +61,11 @@
     </style>
     <body>
         Click on right-hand-side components to <strong>activate</strong>/<strong><font style="color:rgba(250, 232, 243,0.5)">deactivate</font></strong>! &nbsp;
-        <h1>
-            <center>
+        <h1 style="text-align:center">
                 f(x) = <span id="component1" onclick=changecomponent('component1')>x²ᐟ³</span> +
                 <span id="component2" onclick=changecomponent('component2')>0.9√</span>
                 <span id="component3" onclick=changecomponent('component3')>(8-x²)</span> · 
                 <span id="component4" onclick=changecomponent('component4')>sin(πax)</span>
-            </center>
         </h1>
 
         a: <input id="slider" type="range" min="-30" max="30" value="20" class="slider" />
@@ -155,8 +153,8 @@
 
 
             function changecomponent(id) {
-                var coeffnum = id.slice(-1);
-                var coeffname = 'coeff' + coeffnum;
+                let coeffnum = id.slice(-1);
+                let coeffname = 'coeff' + coeffnum;
                 if (window[coeffname] == 1) {
                     window[coeffname] = 0;
                     document.getElementById(id).style.color = 'rgba(250, 232, 243,0.5)';
@@ -169,8 +167,8 @@
             }
 
             function generateValues(value, start, end, step = 1) {
-                var numOfyValuesToRemove = yValues.length??0;
-                var numOfxValuesToRemove = xValues.length??0;
+                let numOfyValuesToRemove = yValues.length??0;
+                let numOfxValuesToRemove = xValues.length??0;
                 for (let x = start; x <= end; x += step) {
                     yValues.push(eval(value));
                     xValues.push(x);
