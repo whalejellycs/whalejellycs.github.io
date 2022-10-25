@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -26,7 +26,7 @@
             color: rgb(250, 232, 243);
             font-family: Helvetica
         }
-        #component1, #component2, #component3, #component4, .slider{
+        #component1, #component2, #component3, #component4, .slider, #randomizeButton{
             cursor: pointer;
         }
         .slider {
@@ -70,6 +70,8 @@
 
         a: <input id="slider" type="range" min="-30" max="30" value="20" class="slider" />
         <input type="text" id="sliderOutput" style="border:hidden;font-size:14px" size="4" value="20" />
+        <span id="randomizeButton" style="float:right;background-color:deeppink;border-radius:25px;"
+              onclick="randomize()">&nbsp; Randomize &nbsp;</span>
         <p></p>
 
         <canvas id="ecgDiagram" style="width:100%"></canvas>
@@ -190,6 +192,22 @@
                 }
             }
 
+            function randomize() {
+                coeff1 = Math.floor(Math.random() * 2);
+                coeff2 = Math.floor(Math.random() * 2);
+                coeff3 = Math.floor(Math.random() * 2);
+                coeff4 = Math.floor(Math.random() * 2);
+                a = Math.round(Math.random() * 200 * 1000) / 1000 - 100;
+                slider.value = a;
+                sliderOuput.value = a;
+                let coeffArray = [coeff1, coeff2, coeff3, coeff4];
+                for (let i = 1; i < coeffArray.length + 1; i++) {
+                    let coeffname = 'component';
+                    coeffname = coeffname + i;
+                    document.getElementById(coeffname).style.color = 'rgba(250, 232, 243,' + (coeffArray[i - 1]*0.5+0.5) + ')';
+                }
+                refreshGraph('afterLoad');
+            }
         </script>
 
         <footer align="right" style="font-size: 12px">
