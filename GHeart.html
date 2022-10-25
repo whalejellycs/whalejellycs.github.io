@@ -197,7 +197,7 @@
                 coeff2 = Math.floor(Math.random() * 2);
                 coeff3 = Math.floor(Math.random() * 2);
                 coeff4 = Math.floor(Math.random() * 2);
-                a = Math.trunc(Math.random() * 200 * 100) / 100 - 100;
+                a = Math.trunc((Math.random() * 200 - 100)* 100) / 100;  // for 2 dec places, -100<a<100; Math.trunc(Math.random() * 200 * 100) / 100 - 100 leaves extra decmal places now and then.
                 slider.value = a;
                 sliderOuput.value = a;
                 let coeffArray = [coeff1, coeff2, coeff3, coeff4];
