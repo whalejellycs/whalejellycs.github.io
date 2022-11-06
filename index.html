@@ -103,11 +103,10 @@
             url: 'pageList.txt',
             success: function (response) {
                 pageList = response.split('\n');
-                displayProjects();
+                displayProjects(); alert(pageList.length);
             }
         }) 
-
-        alert(pageList.length);
+        
         //const pageList = ['https://whalejellycs.github.io/GHeart.html',
         //    'https://whalejellycs.github.io/whale_map.html',
         //    'https://whalejellycs.github.io/eawbya.html'];
