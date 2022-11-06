@@ -115,15 +115,12 @@
                     url: pageList[i],
                     success: function (response) {
                         for (let j = 0; j < listVarNames.length; j++) {
-                            let cutIndex = response.search(og[j]);
-                            let responseSlice = response.slice(cutIndex);
-                            cutIndex = responseSlice.search("content");
-                            responseSlice = responseSlice.slice(cutIndex);
-                            cutIndex = Math.min(responseSlice.search('"'), responseSlice.search("'"));
-                            let quoteMark = responseSlice[cutIndex];
-                            responseSlice = responseSlice.slice(cutIndex + 1);
-                            cutIndex = responseSlice.search(quoteMark);
-                            listVars[listVarNames[j]] = responseSlice.substring(0, cutIndex);
+                            let startIndex = response.search(og[j]); 
+                            let startIndex2 = response.indexOf("content", startIndex);
+                            startIndex = Math.min(response.indexOf("'", startIndex2), response.indexOf('"', startIndex2));
+                            let quoteMark = response[startIndex];
+                            let readTill = response.indexOf(quoteMark, startIndex+1);
+                            listVars[listVarNames[j]] = response.substring(startIndex+1, readTill);
                         }
 
                         $("#projectList").append("<li><div class='row'><div class='col'>" + listVars.subject + "</div><div class='col'><h5>" +
