@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@DramaPhilosophy" />
+    <meta name="twitter:site" content="@DramaPhilosophy" />
+    <meta name="twitter:title" content="Whale Jelly CS" />
+    <meta name="twitter:description" content="Narratives-inspired computing." />
+    <meta name="twitter:image:src" content="https://whalejellycs.github.io/icons/flying.jpg" />
+    <meta name="twitter:image:width" content="280" />
+    <meta name="twitter:image:height" content="150" />
+
+    <meta property="og:title" content="Whale Jelly CS" />
+    <meta property="og:description" content="Narratives-inspired computing." />
+    <meta property="og:image" content="https://whalejellycs.github.io/icons/flying.jpg" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Whale Jelly CS</title>
+    <link rel="icon" type="image/x-icon" href="icons/amethyst.png" />
+
+    <!--<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        html, body, footer, div, img {
+            background-color: black; /*so that site text legibility is maintained while the background image is loading*/
+            color: azure;
+        }
+
+        html {
+            background-image: url('icons/flying.jpg');
+            background-repeat: round;
+        }
+
+        body, .nav, .nav-tabs, .nav-item, .nav-link, .container, .row, .col, footer {
+            background: transparent !important;
+        }
+
+            .nav-link.active {
+                color: azure !important;
+            }
+
+        a:not(.nav-link) {
+            color: azure;
+            -webkit-animation: glow 1s ease-in-out infinite alternate;
+            -moz-animation: glow 1s ease-in-out infinite alternate;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @-webkit-keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+            }
+
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+            }
+        }
+
+        a:hover {
+            color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col">
+            <h1>&nbsp; w<font style="color:rgb(205,50,132)">h</font>ale jelly cs &nbsp;</h1>
+        </div>
+        <div class="col">
+            <span style="float:right;">Narratives-inspired computing.  &nbsp;<br />Ⓒ All rights reserved.&nbsp;</span>
+        </div>
+    </div>
+    <br />
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">By work</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="subject-index.html">By subject</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="fiction-index.html">By fiction</a>
+        </li>
+    </ul>
+    <br />
+
+    <div class="container">
+        <div class="row" id="projectList">
+
+        </div>
+    </div>
+
+    <br />
+    <!-- Bootstrap for CSS only; Popper not included -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script>
+        var pageList = [];
+        $.ajax({
+            url: 'pageList.txt',
+            success: function (response) {
+                pageList = response.split('\n');
+                pageList = pageList.filter(link=>link!='');
+                displayProjects(); //The code within is integrated here like this so that it'll be executed only after the async ajax code above has been executed.
+            }
+        })
+
+        const cardVarNames = ['cardTitle', 'cardImage', 'cardDescription'];
+
+        function displayProjects() {
+            for (let i = 0; i < pageList.length; i++) {
+                let og = ["og:title", "og:image", "og:description"];
+                var cardVars = { 'cardTitle': '', 'cardImage': '', 'cardDescription': '' };
+                $.ajax({
+                    url: pageList[i],
+                    success: function (response) {
+                        for (let j = 0; j < cardVarNames.length; j++) {
+                            let cutIndex = response.search(og[j]);
+                            let responseSlice = response.slice(cutIndex);
+                            cutIndex = responseSlice.search("content");
+                            responseSlice = responseSlice.slice(cutIndex);
+                            cutIndex = Math.min(responseSlice.search('"'), responseSlice.search("'"));
+                            let quoteMark = responseSlice[cutIndex];
+                            responseSlice = responseSlice.slice(cutIndex + 1);
+                            cutIndex = responseSlice.search(quoteMark);
+                            cardVars[cardVarNames[j]] = responseSlice.substring(0, cutIndex);
+                        }
+
+                        $("#projectList").append("<div class='col'><div class='card' style='width: 18rem; '><img src = '" +
+                            cardVars.cardImage + "' class='card-img-top'><div class='card-body'><h5 class='card-title'>" +
+                            cardVars.cardTitle + "</h5 ><p class='card-text'>" +
+                            cardVars.cardDescription + "</p > <a href='" +
+                            pageList[i] + " 'target='_blank' rel='noopener' class='btn btn-primary'>Blowhole 🌊</a></div ></div ></div>");
+                    }
+                });
+
+            };
+        }
+
+
+    </script>
+    <footer align="right" style="font-size:17px">
+        <b>
+            <a href="https://twitter.com/DramaPhilosophy?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @DramaPhilosophy</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <br />
+            <br />
+            <a href="https://www.flaticon.com/free-icons/amethyst">Home tab icon</a>: <a href="https://www.flaticon.com/authors/freepik">Freepik</a> @ <a href="https://www.flaticon.com/">Flaticon</a>
+            | <a href="https://www.freepik.com/search?query=atmosphere">Banner</a>: <a href="https://www.freepik.com/">Freepik.com</a>
+        </b>
+    </footer>
+</body>
+
+</html>
