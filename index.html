@@ -39,6 +39,10 @@
             background: transparent !important;
         }
 
+        .nav-link.active {
+            color: azure !important;
+        }
+
         a:not(.nav-link) {
             color: azure; 
             -webkit-animation: glow 1s ease-in-out infinite alternate;
@@ -101,8 +105,9 @@
                 pageList = response.split('\n');
                 displayProjects();
             }
-        })
+        }) 
 
+        alert(pageList);
         //const pageList = ['https://whalejellycs.github.io/GHeart.html',
         //    'https://whalejellycs.github.io/whale_map.html',
         //    'https://whalejellycs.github.io/eawbya.html'];
