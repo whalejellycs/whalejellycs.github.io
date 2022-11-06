@@ -118,12 +118,12 @@
                     url: pageList[i],
                     success: function (response) {
                         for (let j = 0; j < cardVarNames.length; j++) {
-                            let startIndex = response.search(og[j]); 
-                            let startIndex2 = response.indexOf("content", startIndex);
-                            startIndex = Math.min(response.indexOf("'", startIndex2), response.indexOf('"', startIndex2));
-                            let quoteMark = response[startIndex];
-                            let readTill = response.indexOf(quoteMark, startIndex+1);
-                            cardVars[cardVarNames[j]] = response.substring(startIndex+1, readTill);
+                            let startFinder = response.search(og[j]);
+                            let startFinder2 = response.indexOf("content", startFinder);
+                            startFinder = Math.min(response.indexOf("'", startFinder2), response.indexOf('"', startFinder2));
+                            let quoteMark = response[startFinder];
+                            let readTill = response.indexOf(quoteMark, startFinder + 1);
+                            cardVars[cardVarNames[j]] = response.substring(startFinder+1, readTill);
                         }
 
                         $("#projectList").append("<div class='col'><div class='card' style='width: 18rem; '><img src = '" +
