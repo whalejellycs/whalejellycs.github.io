@@ -25,7 +25,7 @@
     <!--<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <style>
-        html, body, footer, div, img {
+        html, body, footer, div, img, ul {
             background-color: black; /*so that site text legibility is maintained while the background image is loading*/
             color: azure;
         }
@@ -126,9 +126,9 @@
                             listVars[listVarNames[j]] = responseSlice.substring(0, cutIndex);
                         }
 
-                        $("#projectList").append("<li>" + listVars.subject + "<h5>" +
-                            listVars.title + "</h5 ><a href='" +
-                            pageList[i] + "' class='btn btn-primary'>Blowhole 🌊</a></div ></div ></div>");
+                        $("#projectList").append("<li><div class='row'><div class='col'>" + listVars.subject + "</div><div class='col'><h5>" +
+                            listVars.title + "</h5 ></div><div class='col'><a href='" +
+                            pageList[i] + "' class='btn btn-primary'>Blowhole 🌊</a></div ></div>");
                     }
                 });
 
