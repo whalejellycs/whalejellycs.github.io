@@ -101,7 +101,7 @@
             success: function (response) {
                 pageList = response.split('\n');
                 pageList = pageList.filter(link=>link!=''); 
-                displayProjects(); 
+                displayProjects(); //The code within is integrated here like this so that it'll be executed only after the async ajax code above has been executed. 
             }
         }) 
 
