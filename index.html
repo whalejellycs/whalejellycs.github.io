@@ -103,7 +103,8 @@
             url: 'pageList.txt',
             success: function (response) {
                 pageList = response.split('\n');
-                displayProjects(); alert(pageList.length);
+                pageList = pageList.filter(link=>link!=''); 
+                displayProjects(); 
             }
         }) 
         
