@@ -119,11 +119,11 @@
                     success: function (response) {
                         for (let j = 0; j < cardVarNames.length; j++) {
                             let startFinder = response.search(og[j]);
-                            let startFinder2 = response.indexOf("content", startFinder);
-                            startFinder = Math.min(response.indexOf("'", startFinder2), response.indexOf('"', startFinder2));
+                            let auxiliaryFinder = response.indexOf("content", startFinder);
+                            startFinder = Math.min(response.indexOf("'", auxiliaryFinder), response.indexOf('"', auxiliaryFinder));
                             let quoteMark = response[startFinder];
-                            let readTill = response.indexOf(quoteMark, startFinder + 1);
-                            cardVars[cardVarNames[j]] = response.substring(startFinder+1, readTill);
+                            auxiliaryFinder = response.indexOf(quoteMark, startFinder+1);
+                            cardVars[cardVarNames[j]] = response.substring(startFinder+1, auxiliaryFinder);
                         }
 
                         $("#projectList").append("<div class='col'><div class='card' style='width: 18rem; '><img src = '" +
