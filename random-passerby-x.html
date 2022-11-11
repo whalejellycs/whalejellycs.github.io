@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@DramaPhilosophy" />
+    <meta name="twitter:site" content="@DramaPhilosophy" />
+    <meta name="twitter:title" content="Random Passerby X" />
+    <meta name="twitter:description" content="Everything is — may be — fated, except love." />
+    <meta name="twitter:image:src" content="https://whalejellycs.github.io/icons/leaves.png" />
+    <meta name="twitter:image:width" content="280" />
+    <meta name="twitter:image:height" content="150" />
+
+    <meta property="og:title" content="Random Passerby X" />
+    <meta property="og:description" content="Everything is — may be — fated, except love." />
+    <meta property="og:image" content="https://whalejellycs.github.io/icons/leaves.png" />
+
+    <meta property="subject" content="Hashing" />
+    <meta property="fiction" content="Cang Lan Jue" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Random Passerby X</title>
+    <link rel="icon" type="image/x-icon" href="music icon" />
+    <style>
+        html, footer {
+            background-color: darkslategrey;
+            background-image: linear-gradient(to right, pink,darkslategrey);
+            color: lemonchiffon;
+            font-family: Helvetica
+        }
+        a {
+            color: lightseagreen;
+            font-family: Helvetica
+        }
+        input {
+            background-color: darkslategray;
+            color: white;
+            border-radius: 10px
+        }
+        button {
+            cursor: pointer;
+            border-radius: 250px;
+            border-color: antiquewhite;
+            background-color: lemonchiffon;
+            color: rgb(0,0,10);
+        }
+    </style>
+</head>
+
+<body>
+    <div style="float:left;">
+        <img src="rperfume.png"/>
+    </div>
+    <div>
+        <div>
+            <label for="favchar">What's your favorite fantasy character's name?</label>
+            <br />
+            <input type="text" id="favchar">
+        </div>
+        <br />
+        <div>
+            <label for="username">What name does the person dearest to you calls you by?</label>
+            <br />
+            <input type="text" id="username">
+        </div>
+
+        <br />
+        <button onclick=readDestiny()>Destiny Reading Begins</button>
+        <br />
+        <i>
+            <p>Proper spelling is a must!</p>
+            <p>Cool tip: Polyglots are permitted to combine multiple fates.</p>
+        </i>
+        <br />
+        <div id="fate"></div>
+    </div>
+    <!--<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        async function readDestiny() {
+            $('#fate').empty();
+            if (($('#favchar').val().length == 0) || ($('#username').val().length == 0)) {
+                $('#fate').append("<p>Oops. You didn't fill in both names. Try again.</p>");
+                return;
+            }
+            var userString = $('#favchar').val() + $('#username').val();
+            digestString(userString).then((fateNum) => $('#fate').append("<h3>Your Fate</h3>" + fateNum));
+            //handle fateNum according to its range in eg 0-9
+        }
+
+        async function digestString(string) {
+            const encodedString = new TextEncoder().encode(string)
+            const hashBuffer = await crypto.subtle.digest('SHA-256', encodedString);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            let fateNum=0;
+            for (let i = 0; i < hashArray.length; i++) {
+                fateNum += (hashArray[i] % 10); //adds up last digits of all nums in the array
+            }
+            fateNum = fateNum%10;
+            return fateNum;
+        }
+    </script>
+
+    <footer style="font-size: 12px; position:absolute; bottom:0px;right:0px;background:transparent">
+        <a href="https://twitter.com/DramaPhilosophy?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @DramaPhilosophy</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br />
+        <br />
+        <a href="https://www.flaticon.com/free-icons/leaf" title="leaf icons">Tab icon</a>: <a href="https://www.flaticon.com/authors/freepik">Freepik</a> @ <a href="https://www.flaticon.com/">Flaticon</a>
+    </footer>
+</body>
+</html>
