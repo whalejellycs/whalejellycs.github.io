@@ -45,6 +45,10 @@
             background-color: lemonchiffon;
             color: rgb(0,0,10);
         }
+        #fate{
+            color: pink;
+            font-style: italic;
+        }
     </style>
 </head>
 
@@ -85,7 +89,16 @@
                 return;
             }
             var userString = $('#favchar').val() + $('#username').val();
-            digestString(userString).then((fateNum) => $('#fate').append("<h3>Your Fate</h3>" + fateNum));
+            digestString(userString).then((fateNum) => {
+                if ((fateNum == 0) || (fateNum == 2)) { //for En and Simplified ZH versions of the fictional CP 
+                    $('#fate').append("<h3>Your Fate</h3> <p>You're the Mr. Xiao who falls in love with a maid working in his relative's house ... </p>");
+                    return;
+                }
+                else {
+                    $('#fate').append("<h3>Your Fate</h3>" + fateNum);
+                    return;
+                }
+            });
             //handle fateNum according to its range in eg 0-9
         }
 
