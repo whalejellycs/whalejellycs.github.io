@@ -45,11 +45,14 @@
             background-color: lemonchiffon;
             color: rgb(0,0,10);
         }
-        #fate{
+        #fate {
+            visibility: hidden;
+            max-height: 30%;
+            overflow-y: scroll;
             color: pink;
             font-style: italic;
-            font-family:Vivaldi;
-            font-size:x-large;
+            font-family: Vivaldi;
+            font-size: x-large;
         }
     </style>
 </head>
@@ -86,6 +89,7 @@
     <script>
         async function readDestiny() {
             $('#fate').empty();
+            $('#fate').css('visibility', 'visible');
             if (($('#favchar').val().length == 0) || ($('#username').val().length == 0)) {
                 $('#fate').append("<p>Oopsie. You didn't fill in both names. Try again.</p>");
                 return;
@@ -94,7 +98,23 @@
             digestString(userString).then((fateNum) => {
                 if ((fateNum == 0) || (fateNum == 2)) { //for En and ZH versions of the fictional CP 
                     $('#fate').append("<h3>Your Fate</h3>" +
-                        "<p>ꕥ You're the X who falls in love with a servant working in your relative's house ... </p>");
+                        "<p>ꕥ You're romantic scholar X, who falls in love with a musically talented servant working in your aunt's house. " +
+                        "Alas, your aunt sells the servant to an official. One day, you meet the servant while visiting a festival. Feeling emotional, you gifts the servant a poem ending with the lines:</p>" +
+                        "<p> 'Once the beloved disappears into the large, cloistered residence of the wealthy new spouse, </p>" +
+                        "<p><font style='color:white'>Mr </font>X<font style='color:white'>iao</font> becomes forever a passerby on the road.'</p>" +
+                        "<p>Unexpectedly, the poem touches the official, who summons you to grab your hands in admiration of the poem and orders the servant to return with you." +
+                        " By and by, poets and lyricists start to refer to all men loved by women as <font style='color:white'>Mr </font>X<font style='color:white'>iao</font>.</p>" +
+                        "<p><small>Poet Cui Jiao's self-reference Passerby Mr Xiao, literary sources: <a href='http://cls.lib.ntu.edu.tw/tang/tangats/Tang_ATS2012/Srch_ListShow.aspx?TsId=10135050001'>1</a>, " +
+                        "<a href='https://so.gushiwen.cn/shiwenv_09339fd6a26f.aspx'>2</a>, " +
+                        "<a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>3</a></small></p><br/>" +
+                        "<p>To be also a finance whiz X, plant jasmine seeds.</p>");
+                    return;
+                }
+                if (fateNum == 1) {
+                    $('#fate').append("<h3>Your Fate</h3>" +
+                        "<p>ꕥ You're Emperor X.</p><p>" +
+                        "<small>Emperor Xiāo Yǎn, literary source: <a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>1</a></small></p>" +
+                        "<p>To be also a romantic X, plant hydrangea seeds.</p>");
                     return;
                 }
                 else {
