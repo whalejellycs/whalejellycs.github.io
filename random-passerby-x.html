@@ -54,6 +54,9 @@
             font-family: Apple Chancery; /*Vivaldi;*/
             font-size: x-large;
         }
+        h3{
+            font-family: Vivaldi;
+        }
     </style>
 </head>
 
@@ -100,21 +103,35 @@
                     $('#fate').append("<h3>Your Fate</h3>" +
                         "<p>ꕥ You're romantic scholar X, who falls in love with a musically talented servant working in your aunt's house. " +
                         "Alas, your aunt sells the servant to an official. One day, you meet the servant while visiting a festival. Feeling emotional, you gifts the servant a poem ending with the lines:</p>" +
-                        "<p> 'Once the beloved disappears into the vast, cloistered residence of the wealthy new spouse, </p>" +
-                        "<p><font style='color:white'>Mr </font>X<font style='color:white'>iao</font> becomes forever a passerby on the road.'</p>" +
-                        "<p>Unexpectedly, the poem touches the official, who summons you to grab your hands in admiration of the poem and orders the servant to return with you.</p>" +
-                        "<p><small>Literary sources for poet Cui Jiao's self-reference Passerby Mr Xiao, : <a href='http://cls.lib.ntu.edu.tw/tang/tangats/Tang_ATS2012/Srch_ListShow.aspx?TsId=10135050001'>1</a>, " +
+                        "<p><i>'Once the beloved disappears into the vast residence of the wealthy new spouse, </p>" +
+                        "<p><font style='color:white'>Mr </font>X<font style='color:white'>iao</font> becomes forever a passerby on the road.'</i></p>" +
+                        "<p><font style='color:white'>Mr </font>X<font style='color:white'>iao</font> is a generic term for a <font style='color:white'>woman's </font>romantic interest in poems and lyrics. Unexpectedly, the poem touches the official, who summons you to grab your hands in admiration of the poem and orders the servant to return with you.</p>" +
+                        "<p><small>Literary sources for poet Cui Jiao's self-reference Passerby Mr Xiāo: <a href='http://cls.lib.ntu.edu.tw/tang/tangats/Tang_ATS2012/Srch_ListShow.aspx?TsId=10135050001'>1</a>, " +
                         "<a href='https://so.gushiwen.cn/shiwenv_09339fd6a26f.aspx'>2</a>, " +
                         "<a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>3</a></small></p><br/>" +
                         "<p>To be also a finance whiz X, plant jasmine seeds.</p>");
                     return;
                 }
-                if ((fateNum == 1) || (fateNum==9)) {
+                if ((fateNum == 7) || (fateNum == 8)) { //for En and ZH versions of the fictional CP 
+                    $('#fate').append("<h3>Your Fate</h3>" +
+                        "<p>ꕥ You're enchanting flautist X. When you play your flute in your yard, peacocks and white cranes would flock there and dance. " +
+                        "Every day, you would teach your spouse how to mimic phoenix calls with the flute. Years later, the flute sounds resemble the calls so much that a phoenix starts to rest on your rooftop.</p>" +
+                        "<p>Your father-in-law, who is actually a duke, then builds an elevated phoenix-themed building structure for you, where you and your spouse stay for years, never touching the ground again.</p>" +
+                        "<p>In the end, the two of you ride off on the phoenix. What a life. Where can we sign up for this phoenix- and peacock-entertaining career? " +
+                        "People immortalize you two with a Phoenix Woman Temple, where flute music is frequently heard.</p>" +
+                        "<p>You're one of the claimed reasons <font style='color:white'>Mr </font>X<font style='color:white'>iao</font> becomes a generic term for a <font style='color:white'>woman's </font>romantic interest in poems and lyrics.</p>"+
+                        "<p><small>Literary sources for flautist Xiāo Shǐ: <a href='https://books.google.com/books?id=Nf5MEAAAQBAJ&pg=PT148&dq=%E5%88%97%E4%BB%99%E4%BC%A0%C2%B7%E8%90%A7%E5%8F%B2'>1</a>, " +
+                        "<a href='https://books.google.com./books?id=GDhXEAAAQBAJ&pg=PT114'>2</a>, " +
+                        "<a href='https://www.bjwmb.gov.cn/zxfw/wmwx/wskt/t20200221_966960.htm'>3</a></small></p><br/>" +
+                        "<p>To be also a romantic X, plant hydrangea seeds.</p>");
+                    return;
+                }
+                if ((fateNum == 1) || (fateNum == 9)) {
                     $('#fate').append("<h3>Your Fate</h3>" +
                         "<p>ꕥ You're Emperor X, the founder of a dynasty. Although the dynasty lasts only 55 years, 47 of that fall under your reign, the longest and most stable among contemporary rulers in your region. </p>" +
-                        "<p>You were already so talented before you claimed the throne that <font style='color:white'>Mr </font>X<font style='color:white'>iao</font> becomes a generic term for a <font style='color:white'>woman's </font>dream lover in poems and lyrics.</p>" +
+                        "<p>You were already so talented before you claimed the throne that you're one of the claimed reasons <font style='color:white'>Mr </font>X<font style='color:white'>iao</font> becomes a generic term for a <font style='color:white'>woman's </font>romantic interest in poems and lyrics.</p>" +
                         "<p>In reality, though, neither political power per se nor the opposite gender is necessarily your enduring top priority. Four times in your reign, you enter monkhood, sometimes taking enormous donations from your officials to be persuaded to sit on the throne again.</p>"+
-                        "<small>Literary sources for Emperor Xiāo Yǎn, : <a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>1</a>, " +
+                        "<small>Literary sources for Emperor Xiāo Yǎn: <a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>1</a>, " +
                         "<a href='https://www.britannica.com/biography/Wudi-emperor-of-Southern-Liang-dynasty'>2</a>, " +
                         "<a href='https://so.gushiwen.cn/shiwenv_09339fd6a26f.aspx'>3</a>, " +
                         "<a href='https://tw.news.yahoo.com/%E7%90%85%E7%90%8A%E6%A6%9C%E4%B8%AD%E6%A2%81%E5%9C%8B%E5%8E%9F%E5%9E%8B-%E9%96%8B%E5%9C%8B%E7%9A%87%E5%B8%9D%E5%8D%BB%E4%B8%8B%E5%A0%B4%E6%85%98-133047417.html'>4</a></small></p > " +
