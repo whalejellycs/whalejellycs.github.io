@@ -99,20 +99,22 @@
             }
             var userString = $('#favchar').val() + $('#username').val();
             digestString(userString).then((fateNum) => {
-                if ((fateNum == 0) || (fateNum == 2)) { //for En and ZH versions of the fictional CP 
+                if ((fateNum == 0) || (fateNum == 2)) { 
                     $('#fate').append("<h3>Your Fate</h3>" +
                         "<p>ꕥ You're romantic scholar X, who falls in love with a musically talented servant working in your aunt's house. " +
                         "Alas, your aunt sells the servant to an official. One day, you meet the servant while visiting a festival. Feeling emotional, you gifts the servant a poem ending with the lines:</p>" +
                         "<p><i>'Once the beloved disappears into the vast residence of the wealthy new spouse, </p>" +
                         "<p><font style='color:white'>Master </font>X<font style='color:white'>iao</font> becomes forever a passerby on the road.'</i></p>" +
-                        "<p><font style='color:white'>Master </font>X<font style='color:white'>iao</font> is a generic term for a <font style='color:white'>woman's </font>romantic interest in poems and lyrics. Unexpectedly, the poem touches the official, who summons you to grab your hands in admiration of the poem and orders the servant to return with you.</p>" +
+                        "<p><font style='color:white'>Master </font>X<font style='color:white'>iao</font> is a generic term for a <font style='color:white'>woman's </font>romantic interest in poems and lyrics. " +
+                        "Although the term precedes you, most modern readers know it because of your literary finesse.</p>" +
+                        "<p>Unexpectedly, the poem touches the official, who summons you to grab your hands in admiration of the poem and lets the servant return with you. </p>" +
                         "<p><small>Literary sources for poet Cui Jiao's self-reference Passerby Master Xiāo: <a href='http://cls.lib.ntu.edu.tw/tang/tangats/Tang_ATS2012/Srch_ListShow.aspx?TsId=10135050001'>1</a>, " +
                         "<a href='https://so.gushiwen.cn/shiwenv_09339fd6a26f.aspx'>2</a>, " +
                         "<a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>3</a></small></p><br/>" +
                         "<p>To be also a finance whiz X, plant jasmine seeds.</p>");
                     return;
                 }
-                if ((fateNum == 7) || (fateNum == 8)) { //for En and ZH versions of the fictional CP 
+                if ((fateNum == 7) || (fateNum == 8)) { 
                     $('#fate').append("<h3>Your Fate</h3>" +
                         "<p>ꕥ You're enchanting flautist X. When you play your flute in your yard, peacocks and white cranes would flock there and dance. " +
                         "Every day, you would teach your spouse how to mimic phoenix calls with the flute. Years later, the flute sounds resemble the calls so much that a phoenix starts to rest on your rooftop.</p>" +
@@ -142,7 +144,7 @@
                     $('#fate').append("<h3>Your Fate</h3>" +
                         "<p>ꕥ You're trusted counsel X. People think you have it easy but your career has a zigzag shape. Ultimately, though, there are those who believe in your dedication. " +
                         "This faith, however, ia accompanied by a wish that you would recognize shades of gray more.</p>" +
-                        "<p>Work is romance to you. By a mere stroke of coincidence, one of your bosses endearingly calls you by a term eventually used to refer to any woman's romantic interest. As unimaginable as it is to all of us in our current lifetimes, you'll probably see it as an honor to share the same final resting place as your boss and colleagues. </p>" +
+                        "<p>Work is romance to you. By a mere stroke of coincidence, one of your bosses endearingly calls you by a term eventually used to refer to any woman's romantic interest. As unfathomable as it is to all of us in our current lifetimes, you'll probably see it as an honor when you share the same final resting place as your boss and colleagues. </p>" +
                         "<p><small>Literary sources for Chancellor Xiāo Yǔ: <a href='https://books.google.com/books?id=7koWfzX74MUC&pg=PA535'>1</a>, " +
                         "<a href='https://books.google.com/books?id=pBctDQAAQBAJ&pg=PA147'>2</a>, " +
                         "<a href='https://zh.m.wikisource.org/zh/%E8%88%8A%E5%94%90%E6%9B%B8/%E5%8D%B763'>3</a></small></p><br/>" +
