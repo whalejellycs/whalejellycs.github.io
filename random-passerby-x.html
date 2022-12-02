@@ -24,8 +24,8 @@
     <link rel="icon" type="image/x-icon" href="music icon" />
     <style>
         html, footer {
-            background-color: darkslategrey;
-            background-image: linear-gradient(to right, pink,darkslategrey);
+            background-color: darkslategray;
+            background-image: linear-gradient(to right, pink,darkslategray);
             color: lemonchiffon;
             font-family: Helvetica
         }
@@ -61,13 +61,13 @@
             font-family: Vivaldi;
         }
         .spfontcolor{
-            color: rgb(0,172,172);
+            color: rgb(0,145,172);
         }
     </style>
 </head>
 
 <body>
-    <div id="art" style="float:left;">
+    <div style="float:left;">
         <img src="rperfume.png" />
         <!--<div style="position:relative;z-index:2;" ></div>-->
     </div>
@@ -104,6 +104,7 @@
             $('#fate').css('visibility', 'visible');
             if (($('#favchar').val().length == 0) || ($('#username').val().length == 0)) {
                 $('#fate').append("<p>Oopsie. You didn't fill in both names. Try again.</p>");
+                $('footer').css('position', 'absolute');
                 return;
             }
             var userString = $('#favchar').val() + $('#username').val();
@@ -124,6 +125,8 @@
                         "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
                         "<p>To be also a counsel X, plant licorice seeds.</p>" +
                         "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, PaleVioletRed, darkslategray)');
+                    $('footer').css('position', 'relative');
                     return;
                 }
                 if (fateNum == 2) { //num for match with EN RH
@@ -131,7 +134,7 @@
                         "<p>ꕥ You're enchanting flautist X. When you play your flute in your yard, peacocks and white cranes would flock there and dance. " +
                         "Every day, you would teach your spouse how to mimic phoenix calls with the flute. Years later, the flute sounds resemble the calls so much that a phoenix starts to rest on your rooftop.</p>" +
                         "<p>Your father-in-law, who is actually a duke, then builds an elevated phoenix-themed building structure for you, where you and your spouse stay for years, never touching the ground again.</p>" +
-                        "<p>In the end, the two of you ride off on the phoenix. What a life. Where can we sign up for this phoenix- and peacock-entertaining career? " +
+                        "<p>In the end, the two of you ride off on the phoenix. What a life. Where can the rest of us sign up for this phoenix- and peacock-entertaining career? " +
                         "People memorialize you two with a Phoenix Woman Ancestral Temple, where flute music is frequently heard.</p>" +
                         "<p>You're one of the claimed reasons <font class='spfontcolor'>Master </font>X<font class='spfontcolor'>iao</font> becomes a generic term for a <font class='spfontcolor'>woman's </font>romantic interest in poems and lyrics.</p>" +
                         "<small><p>Literary sources for flautist Xiāo Shǐ: <a href='https://books.google.com/books?id=Nf5MEAAAQBAJ&pg=PT148&dq=%E5%88%97%E4%BB%99%E4%BC%A0%C2%B7%E8%90%A7%E5%8F%B2'>1</a>, " +
@@ -141,6 +144,8 @@
                         "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
                         "<p>To be also a counsel X, plant licorice seeds.</p>" +
                         "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, mediumorchid, darkslategray');
+                    $('footer').css('position', 'relative');
                     return;
                 }
                 if (fateNum == 8)  { //num for match with 1 EN CW
@@ -156,6 +161,8 @@
                         "<p>To be also a musician X, plant jasmine seeds.</p>" +
                         "<p>To be also a counsel X, plant licorice seeds.</p>" +
                         "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, goldenrod, darkslategray)');
+                    $('footer').css('position', 'relative');
                     return;
                 }
                 if ((fateNum == 4) || (fateNum == 9)) { //nums for match with EN MS + 1 EN CW
@@ -170,18 +177,22 @@
                         "<p>To be also a musician X, plant jasmine seeds.</p>" +
                         "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
                         "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, darkseagreen, darkslategray');
+                    $('footer').css('position', 'relative');
                     return;
                 }
                 else {
                     $('#fate').append("<h3>Your Fate</h3>" +
                         "<p>ꕥ You're obscure X. Others Xs are obscure when lumped with Ys and Zs. You’re obscure even among Xs owing to a lack of appreciation for your qualities, perhaps because it takes a really good pair of eyes to read the subtleties or because they tend to be taken for granted. Or maybe you’re obscure by your own design, preferring to keep a low profile to secure personal space and tranquility or turning your nose up at any semblance of grandiosity. </p>" +
                         "<p>But what if there is someone your life story can motivate or comfort? What if knowledge of what a person’s heart beats to can humanize her or her demographic group in a suffocating political or social climate? </p>" +
-                        "<small><p>Philosophical source: <a href='http://cup.columbia.edu/book/vulnerable-minds/9780231200318'>1</a></p>" +
+                        "<small><p>Philosophical source for humanization possibility: <a href='http://cup.columbia.edu/book/vulnerable-minds/9780231200318'>1</a></p>" +
                         "<br/>" +
                         "<p>To be also a scholar X, plant hydrangea seeds.</p>" +
                         "<p>To be also a musician X, plant jasmine seeds.</p>" +
                         "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
                         "<p>To be also a counsel X, plant licorice seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, lavender, darkslategray');
+                    $('footer').css('position', 'relative');
                 }
             });
         }
@@ -199,12 +210,12 @@
         }
     </script>
 
-    <footer style="font-size: 12px; position:absolute; bottom:0px;right:0px;background:transparent">
+    <footer style="font-size: 12px; position:absolute; bottom:5px;right:5px;background:transparent">
         <a href="https://twitter.com/DramaPhilosophy?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @DramaPhilosophy</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <br />
         <br />
-        <a href="https://www.flaticon.com/free-icons/leaf" title="leaf icons">Tab icon</a>: <a href="https://www.flaticon.com/authors/freepik">Freepik</a> @ <a href="https://www.flaticon.com/">Flaticon</a>
+        <a href="https://www.freepik.com/free-vector/perfume-flowers-rose-pink-watercolor-clipart-fashion-illustration_12618047.htm">Perfume graphic</a>: <a href="https://www.freepik.com/author/orchidart">orchidart</a> @ <a href="https://www.freepik.com/">Freepik</a>
     </footer>
 </body>
 </html>
