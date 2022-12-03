@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -108,7 +108,9 @@
                 pageList = response.split('\n');
                 pageList = pageList.filter(link=>link!=''); 
                 displayProjects(); //The code within is integrated here like this so that it'll be executed only after the async ajax code above has been executed. 
-                
+            }
+        }) 
+
         const listVarNames = ['fiction','title'];
 
         function displayProjects() {
@@ -130,7 +132,6 @@
                         $("#projectList").append("<li><div class='row'><div class='col'>" + listVars.fiction + "</div><div class='col'><h5>" +
                             listVars.title + "</h5 ></div><div class='col'><a href='" +
                             pageList[i] + "' target='_blank' rel='noopener' class='btn btn-primary'>Blowhole 🌊</a></div ></div><br/></li>");
-                        $("#projectList").append("<br />The original title has other possible layers of meaning. Native characters have been omitted in favor of more widely comprehensible English meanings for brevity.");
                     }
                 });
 
