@@ -95,8 +95,6 @@
         The titles listed for the works of fiction are their native titles.
         <br/>
     </ul>
-    <br />
-    *The original title has other possible layers of meaning. Native characters have been omitted in favor of more widely comprehensible English meanings for brevity.
 
     <br />
     <!-- Bootstrap for CSS only; Popper not included -->
@@ -110,6 +108,8 @@
                 pageList = response.split('\n');
                 pageList = pageList.filter(link=>link!=''); 
                 displayProjects(); //The code within is integrated here like this so that it'll be executed only after the async ajax code above has been executed. 
+                $("#projectList").append(" <br />
+    <p>*The original title has other possible layers of meaning. Native characters have been omitted in favor of more widely comprehensible English meanings for brevity.</p>");
             }
         }) 
 
