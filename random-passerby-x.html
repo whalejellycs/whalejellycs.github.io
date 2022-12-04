@@ -79,7 +79,7 @@
     </style>
 </head>
 
-<body onload="setTimeout(animateButterflies,2000)">
+<body onload="animateButterflies()">
     <div id="art" style="float:left;">
         <img src="tool_images/rperfume.png" />
     </div>
@@ -233,6 +233,7 @@
         var height = $(window).height();
         var flightStart = height;
         function sine() {
+            let x = Math.sin(0.1);
             butterfly1.style.top = flightStart + 'px';
             butterfly1.style.left = 0.45 * width * Math.sin(0.025 * flightStart) + width / 2 + 'px';
 
