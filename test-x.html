@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@DramaPhilosophy" />
+    <meta name="twitter:site" content="@DramaPhilosophy" />
+    <meta name="twitter:title" content="Random Passerby X" />
+    <meta name="twitter:description" content="Everything is — may be — fated, except love." />
+    <meta name="twitter:image:src" content="https://whalejellycs.github.io/icons/floralmusic.png" />
+    <meta name="twitter:image:width" content="280" />
+    <meta name="twitter:image:height" content="150" />
+
+    <meta property="og:title" content="Random Passerby X" />
+    <meta property="og:description" content="Everything is — may be — fated, except love." />
+    <meta property="og:image" content="https://whalejellycs.github.io/icons/floralmusic.png" />
+
+    <meta property="subject" content="Hashing / Deterministic randomization" />
+    <meta property="fiction" content="Grayish Green Orchid Tactic*" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Random Passerby X</title>
+    <link rel="icon" type="image/x-icon" href="icons/floralmusic.png" />
+    <style>
+        html, footer {
+            background-color: darkslategray;
+            background-image: linear-gradient(to right, pink,darkslategray);
+            color: lemonchiffon;
+            font-family: Helvetica
+        }
+
+        a {
+            color: lightseagreen;
+            font-family: Helvetica
+        }
+
+        input {
+            background-color: darkslategray;
+            color: white;
+            border-radius: 10px
+        }
+
+        button {
+            cursor: pointer;
+            border-radius: 250px;
+            border-color: antiquewhite;
+            background-color: lemonchiffon;
+            color: rgb(0,0,10);
+        }
+
+        #fate {
+            visibility: hidden;
+            max-height: 300px;
+            overflow-y: auto;
+            color: pink;
+            font-style: italic;
+            font-family: Apple Chancery;
+            font-size: x-large;
+            padding: 5px;
+            border: inset;
+            border-color: white;
+        }
+
+        h3 {
+            font-family: Vivaldi;
+        }
+
+        .spfontcolor {
+            color: rgb(182,112,128);
+        }
+
+        .butterfly {
+            color: white;
+            font-size: x-large;
+            position: absolute;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body onload="animateButterflies()">
+    <div id="art" style="float:left;">
+        <img src="tool_images/rperfume.png" />
+    </div>
+    <div>
+        <div>
+            <label for="favchar">What's your favorite fantasy character's name?</label>
+            <br />
+            <input type="text" id="favchar">
+        </div>
+        <br />
+        <div>
+            <label for="username">What name does the person dearest to you calls you by?</label>
+            <br />
+            <input type="text" id="username">
+        </div>
+
+        <br />
+        <button onclick=readDestiny()>Time-travel for Your Next Life</button>
+        <br />
+        <i>
+            <p>Proper spelling, capitalization, etc. are necessary!</p>
+            <p>Cool tip: Polyglots are permitted to splice multiple fates.</p>
+        </i>
+        <br />
+        <div id="fate"></div>
+    </div>
+
+    <div id="butterfly1" class="butterfly">εϊз</div>
+    <div id="butterfly2" class="butterfly">εϊз</div>
+
+    <!--<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/mathjs@11.4.0/lib/browser/math.js"></script>
+    <script>
+
+
+        async function readDestiny() {
+            $('#fate').empty();
+            $('#fate').css('visibility', 'visible');
+            if (($('#favchar').val().length == 0) || ($('#username').val().length == 0)) {
+                $('#fate').append("<p>Oopsie. You didn't fill in both names. Try again.</p>");
+                $('footer').css('position', 'absolute');
+                return;
+            }
+            var userString = $('#favchar').val() + $('#username').val();
+            digestString(userString).then((fateNum) => {
+                flightStart = height;
+                animateButterflies();
+                if (fateNum == 7) {  //num for match with EN LO + CH
+                    $('#fate').append("<h3>Your Fate</h3>" +
+                        "<p>ꕥ You're romantic scholar X, who falls in love with a musically talented servant working in your aunt's house. " +
+                        "Alas, your aunt sells the servant to an official. One day, you meet the servant while visiting a festival. Feeling emotional, you gifts the servant a poem ending with the lines:</p>" +
+                        "<p><h5>'Once the beloved disappears into the vast residence of the upper-class new spouse, </p>" +
+                        "<p><font class='spfontcolor'>Master </font>X<font class='spfontcolor'>iao</font> becomes forever a passerby on the road.'</h5></p > " +
+                        "<p><font class='spfontcolor'>Master </font>X<font class='spfontcolor'>iao</font> is a generic term for a <font class='spfontcolor'>woman's </font>romantic interest in poems and lyrics. " +
+                        "Although the term precedes you, most modern readers know it because of your literary finesse.</p>" +
+                        "<p>Unexpectedly, the poem touches the official, who summons you to grab your hands in admiration of the poem and lets the servant return with you. </p>" +
+                        "<small><p>Literary sources for poet Cui Jiao's self-reference Passerby Master Xiāo: <a href='http://cls.lib.ntu.edu.tw/tang/tangats/Tang_ATS2012/Srch_ListShow.aspx?TsId=10135050001'>1</a>, " +
+                        "<a href='https://so.gushiwen.cn/shiwenv_09339fd6a26f.aspx'>2</a>, " +
+                        "<a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>3</a></p><br/>" +
+                        "<p>To be also a musician X, plant jasmine seeds.</p>" +
+                        "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
+                        "<p>To be also a counsel X, plant licorice seeds.</p>" +
+                        "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, PaleVioletRed, darkslategray)');
+                    $('footer').css('position', 'relative');
+                    return;
+                }
+                if (fateNum == 2) { //num for match with EN RH
+                    $('#fate').append("<h3>Your Fate</h3>" +
+                        "<p>ꕥ You're enchanting flautist X. When you play your flute in your yard, peacocks and white cranes would flock there and dance. " +
+                        "Every day, you would teach your spouse how to mimic phoenix calls with the flute. Years later, the flute sounds resemble the calls so much that a phoenix starts to rest on your rooftop.</p>" +
+                        "<p>Your father-in-law, who is actually a duke, then builds an elevated phoenix-themed building structure for you, where you and your spouse stay for years, never touching the ground again.</p>" +
+                        "<p>In the end, the two of you ride off on the phoenix. What a life. Where can we sign up for this phoenix- and peacock-entertaining career in our current lifetimes? " +
+                        "People memorialize you two with a Phoenix Woman Ancestral Temple, where flute music is frequently heard.</p>" +
+                        "<p>You're one of the claimed reasons <font class='spfontcolor'>Master </font>X<font class='spfontcolor'>iao</font> becomes a generic term for a <font class='spfontcolor'>woman's </font>romantic interest in poems and lyrics.</p>" +
+                        "<small><p>Literary sources for flautist Xiāo Shǐ: <a href='https://books.google.com/books?id=Nf5MEAAAQBAJ&pg=PT148&dq=%E5%88%97%E4%BB%99%E4%BC%A0%C2%B7%E8%90%A7%E5%8F%B2'>1</a>, " +
+                        "<a href='https://books.google.com./books?id=GDhXEAAAQBAJ&pg=PT114'>2</a>, " +
+                        "<a href='https://www.bjwmb.gov.cn/zxfw/wmwx/wskt/t20200221_966960.htm'>3</a></p><br/>" +
+                        "<p>To be also a scholar X, plant hydrangea seeds.</p>" +
+                        "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
+                        "<p>To be also a counsel X, plant licorice seeds.</p>" +
+                        "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, mediumorchid, darkslategray');
+                    $('footer').css('position', 'relative');
+                    return;
+                }
+                if (fateNum == 8) { //num for match with 1 EN CW
+                    $('#fate').append("<h3>Your Fate</h3>" +
+                        "<p>ꕥ You're Emperor X, the founder of a dynasty. Although the dynasty lasts only 55 years, 47 of that fall under your reign, the longest and most stable among contemporary rulers in your region. </p>" +
+                        "<p>You were already so talented before you claimed the throne that you're one of the claimed reasons <font class='spfontcolor'>Master </font>X<font class='spfontcolor'>iao</font> becomes a generic term for a <font class='spfontcolor'>woman's </font>romantic interest in poems and lyrics.</p>" +
+                        "<p>In reality, though, neither political power per se nor the opposite gender is necessarily your enduring top priority. Four times in your reign, you devote yourself to monasticism, sometimes taking enormous donations from your officials to be persuaded to sit on the throne again.</p>" +
+                        "<small>Literary sources for Emperor Xiāo Yǎn: <a href='https://dict.revised.moe.edu.tw/dictView.jsp?ID=106515'>1</a>, " +
+                        "<a href='https://www.britannica.com/biography/Wudi-emperor-of-Southern-Liang-dynasty'>2</a>, " +
+                        "<a href='https://so.gushiwen.cn/shiwenv_09339fd6a26f.aspx'>3</a>, " +
+                        "<a href='https://tw.news.yahoo.com/%E7%90%85%E7%90%8A%E6%A6%9C%E4%B8%AD%E6%A2%81%E5%9C%8B%E5%8E%9F%E5%9E%8B-%E9%96%8B%E5%9C%8B%E7%9A%87%E5%B8%9D%E5%8D%BB%E4%B8%8B%E5%A0%B4%E6%85%98-133047417.html'>4</a></p ><br/>" +
+                        "<p>To be also a scholar X, plant hydrangea seeds.</p>" +
+                        "<p>To be also a musician X, plant jasmine seeds.</p>" +
+                        "<p>To be also a counsel X, plant licorice seeds.</p>" +
+                        "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, goldenrod, darkslategray)');
+                    $('footer').css('position', 'relative');
+                    return;
+                }
+                if ((fateNum == 4) || (fateNum == 9)) { //nums for match with EN MS + 1 EN CW
+                    $('#fate').append("<h3>Your Fate</h3>" +
+                        "<p>ꕥ You're trusted counsel X. People think you have it easy but your career has a zigzag shape. Ultimately, though, there are those who believe in your dedication. " +
+                        "This faith, however, ia accompanied by a wish that you would recognize shades of gray more.</p>" +
+                        "<p>Work is romance to you. By a mere stroke of coincidence, one of your bosses endearingly calls you by a term <font class='spfontcolor'>(Master Xiao)</font> eventually used to refer to any woman's romantic interest. As unfathomable as it is to all of us in our current lifetimes, you'll probably see it as an honor when you share the same final resting place as your boss and colleagues. </p>" +
+                        "<small><p>Literary sources for Chancellor Xiāo Yǔ: <a href='https://books.google.com/books?id=7koWfzX74MUC&pg=PA535'>1</a>, " +
+                        "<a href='https://books.google.com/books?id=pBctDQAAQBAJ&pg=PA147'>2</a>, " +
+                        "<a href='https://zh.m.wikisource.org/zh/%E8%88%8A%E5%94%90%E6%9B%B8/%E5%8D%B763'>3</a></p><br/>" +
+                        "<p>To be also a scholar X, plant hydrangea seeds.</p>" +
+                        "<p>To be also a musician X, plant jasmine seeds.</p>" +
+                        "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
+                        "<p>To be an obscure X despite it all, plant dandelion seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, darkseagreen, darkslategray');
+                    $('footer').css('position', 'relative');
+                    return;
+                }
+                else {
+                    $('#fate').append("<h3>Your Fate</h3>" +
+                        "<p>ꕥ You're obscure X. Others Xs are obscure when lumped with Ys and Zs. You’re obscure even among Xs owing to a lack of appreciation for your qualities, perhaps because it takes a really good pair of eyes to read the subtleties or because they tend to be taken for granted. Or maybe you’re obscure by your own design, preferring to keep a low profile to secure personal space and tranquility or turning your nose up at any semblance of grandiosity. </p>" +
+                        "<p>But what if there is someone your life story can motivate or comfort? What if knowledge of what a person’s heart beats to can humanize her or her demographic group in a suffocating political or social climate? </p>" +
+                        "<small><p>Philosophical source for humanization possibility: <a href='http://cup.columbia.edu/book/vulnerable-minds/9780231200318'>1</a></p>" +
+                        "<br/>" +
+                        "<p>To be also a scholar X, plant hydrangea seeds.</p>" +
+                        "<p>To be also a musician X, plant jasmine seeds.</p>" +
+                        "<p>To be also a monarch X, plant wintersweet seeds.</p>" +
+                        "<p>To be also a counsel X, plant licorice seeds.</p></small>");
+                    $('html').css('background-image', 'linear-gradient(to right, LemonChiffon , darkslategray');
+                    $('footer').css('position', 'relative');
+                }
+            });
+        }
+
+        async function digestString(string) {
+            const encodedString = new TextEncoder().encode(string)
+            const hashBuffer = await crypto.subtle.digest('SHA-256', encodedString);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            let fateNum = 0;
+            for (let i = 0; i < hashArray.length; i++) {
+                fateNum += (hashArray[i] % 10); //adds up last digits of all nums in the array
+            }
+            fateNum = fateNum % 10;
+            return fateNum;
+        }
+
+        var butterfly1 = document.querySelector('#butterfly1');
+        var butterfly2 = document.querySelector('#butterfly2');
+        var width = $('#art').width();
+        var height = $(window).height();
+        var flightStart = height;
+        var sincompile = math.compile('sin(x)');
+        function sine() {
+            const code1 = math.compile('sqrt(3^2 + 4^2)');
+            code1.evaluate();
+            butterfly1.style.top = flightStart + 'px';
+            butterfly1.style.left = 0.45 * width * sincompile.evaluate({ x: 0.025 * flightStart }) + width / 2 + 'px';
+
+            butterfly2.style.top = flightStart + 'px';
+            butterfly2.style.left = 0.45 * width * sincompile.evaluate({ x: -0.025 * flightStart }) + width / 2 + 'px';
+
+            flightStart -= 0.5;
+        }
+        function animateButterflies() {
+            setInterval(sine, 30);
+        }
+    </script>
+
+    <footer style="font-size: 12px; position:absolute; bottom:5px;right:5px;background:transparent">
+        <a href="https://twitter.com/DramaPhilosophy?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @DramaPhilosophy</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br />
+        <br />
+        <a href="https://www.freepik.com/free-vector/perfume-flowers-rose-pink-watercolor-clipart-fashion-illustration_12618047.htm">Perfume graphic</a>: <a href="https://www.freepik.com/author/orchidart">orchidart</a> @ <a href="https://www.freepik.com/">Freepik</a>
+    </footer>
+</body>
+</html>
