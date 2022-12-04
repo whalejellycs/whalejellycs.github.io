@@ -96,9 +96,6 @@
         <br/>
     </ul>
     
-
-    <div style="opacity: 0.85;">*The original title has other possible layers of meaning. For the sake of brevity, native characters have been omitted in favor of more widely comprehensible English translations of their meanings.</div>
-
     <br />
     <!-- Bootstrap for CSS only; Popper not included -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -135,6 +132,10 @@
                         $("#projectList").append("<li><div class='row'><div class='col'>" + listVars.fiction + "</div><div class='col'><h5>" +
                             listVars.title + "</h5 ></div><div class='col'><a href='" +
                             pageList[i] + "' target='_blank' rel='noopener' class='btn btn-primary'>Blowhole 🌊</a></div ></div><br/></li>");
+                        
+                        if (i == pageList.length - 1) {
+                            $("#projectList").append("<div style='opacity: 0.85;'>*The original title has other possible layers of meaning. For the sake of brevity, native characters have been omitted in favor of more widely comprehensible English translations of their meanings.</div>");
+                        }
                     }
                 });
 
