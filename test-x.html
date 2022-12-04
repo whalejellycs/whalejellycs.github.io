@@ -233,15 +233,16 @@
         var width = $('#art').width();
         var height = $(window).height();
         var flightStart = height;
-        var sincompile = math.compile('sin(x)');
+        var hypot = math.evaluate('hypot(x, y) = sqrt(x^2 + y^2)')
+
+        var r = hypot(3, 4)  // 5
+        var sincompile = math.evaluate('sincompile(x)=sin(0.025 * x)');
         function sine() {
-            const code1 = math.compile('sqrt(3^2 + 4^2)');
-            code1.evaluate();
             butterfly1.style.top = flightStart + 'px';
-            butterfly1.style.left = 0.45 * width * sincompile.evaluate({ x: 0.025 * flightStart }) + width / 2 + 'px';
+            butterfly1.style.left = 0.45 * width * sincompile(flightStart) + width / 2 + 'px';
 
             butterfly2.style.top = flightStart + 'px';
-            butterfly2.style.left = 0.45 * width * sincompile.evaluate({ x: -0.025 * flightStart }) + width / 2 + 'px';
+            butterfly2.style.left = 0.45 * width * sincompile(flightStart) + width / 2 + 'px';
 
             flightStart -= 0.5;
         }
