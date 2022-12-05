@@ -27,7 +27,7 @@
             background-color: darkslategray;
             background-image: linear-gradient(to right, pink,darkslategray);
             color: lemonchiffon;
-            font-family: Helvetica
+            font-family: Helvetica;
         }
 
         a {
@@ -112,6 +112,7 @@
 
     <!--<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/mathjs@11.4.0/lib/browser/math.js"></script> <!--For compile function that prevents flight stuck in one lane post-deployment on GitHub-->
     <script>
 
 
@@ -232,12 +233,13 @@
         var width = $('#art').width();
         var height = $(window).height();
         var flightStart = height;
-        function sine() {          
+        var sincompile = math.evaluate('sincompile(x)=sin(0.025 * x)'); //prevents flight stuck in one lane, possibly due to initialization issues with the built-in Math object in JS, post-deployment on GitHub
+        function sine() {
             butterfly1.style.top = flightStart + 'px';
-            butterfly1.style.left = 0.45 * width * Math.sin(0.025 * flightStart) + width / 2 + 'px';
+            butterfly1.style.left = 0.45 * width * sincompile(flightStart) + width / 2 + 'px';
 
             butterfly2.style.top = flightStart + 'px';
-            butterfly2.style.left = 0.45 * width * Math.sin(-0.025 * flightStart) + width / 2 + 'px';
+            butterfly2.style.left = -0.45 * width * sincompile(flightStart) + width / 2 + 'px';
 
             flightStart -= 0.5;
         }
