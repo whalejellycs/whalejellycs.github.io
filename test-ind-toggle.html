@@ -35,15 +35,15 @@
             background-repeat: round;
         }
 
-        body, .nav, .nav-tabs, .nav-item, .nav-link, .container, .row, .col, footer {
+        body, .nav, .nav-tabs, .nav-item, .tab, .container, .row, .col, footer {
             background: transparent !important;
         }
 
-            .nav-link.active {
+            .tab.active {
                 color: azure !important;
             }
 
-        a:not(.nav-link) {
+        a:not(.tab) {
             color: azure;
             -webkit-animation: glow 1s ease-in-out infinite alternate;
             -moz-animation: glow 1s ease-in-out infinite alternate;
@@ -78,13 +78,13 @@
 
     <ul class="nav nav-tabs">
         <li class="active">
-            <a class="nav-link" data-toggle="tab" href="#projectList-ByWork">By work</a>
+            <a class="tab" data-toggle="tab" href="#projectList-ByWork">By work</a>
         </li>
         <li>
-            <a class="nav-link" data-toggle="tab" href="#projectList-BySubject">By subject</a>
+            <a class="tab" data-toggle="tab" href="#projectList-BySubject">By subject</a>
         </li>
         <li>
-            <a class="nav-link" data-toggle="tab" href="#projectList-ByFiction">By fiction</a>
+            <a class="tab" data-toggle="tab" href="#projectList-ByFiction">By fiction</a>
         </li>
     </ul>
     <br />
@@ -94,6 +94,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade in active row" id="projectList-ByWork">
                 </div>
+                <div class="tab-pane fade" id="projectList-BySubject"></div>
             </div>
         </div>
     </div>
