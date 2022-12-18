@@ -35,15 +35,15 @@
             background-repeat: round;
         }
 
-        body, .nav, .nav-tabs, .nav-item, .tab, .container, .row, .col, footer {
+        body, .nav, .nav-tabs, .nav-item, .atab, .container, .row, .col, footer, div {
             background: transparent !important;
         }
 
-            .tab.active {
+            .atab.active {
                 color: azure !important;
             }
 
-        a:not(.tab) {
+        a:not(.atab) {
             color: azure;
             -webkit-animation: glow 1s ease-in-out infinite alternate;
             -moz-animation: glow 1s ease-in-out infinite alternate;
@@ -78,23 +78,28 @@
 
     <ul class="nav nav-tabs">
         <li class="active">
-            <a class="tab" data-toggle="tab" href="#projectList-ByWork">By work</a>
+            <a class="atab" data-toggle="tab" href="#work">By work</a>
         </li>
         <li>
-            <a class="tab" data-toggle="tab" href="#projectList-BySubject">By subject</a>
+            <a class="atab" data-toggle="tab" href="#subject">By subject</a>
         </li>
         <li>
-            <a class="tab" data-toggle="tab" href="#projectList-ByFiction">By fiction</a>
+            <a class="atab" data-toggle="tab" href="#fiction">By fiction</a>
         </li>
     </ul>
     <br />
 
     <div class="container">
-        <div class="row">
-            <div class="tab-content">
-                <div class="tab-pane fade in active row" id="projectList-ByWork">
+        <div class="tab-content">
+            <div class="tab-pane fade in active row" id="work">
+                <div class="row" id="projectList-ByWork">
                 </div>
-                <div class="tab-pane fade" id="projectList-BySubject"></div>
+            </div>
+            <div class="tab-pane fade" id="subject">
+                <div class="row" id="projectList-BySubject"></div>
+            </div>
+            <div class="tab-pane fade" id="fiction">
+                <div class="row" id="projectList-ByFiction"></div>
             </div>
         </div>
     </div>
