@@ -24,7 +24,7 @@
 
     <!--<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <!--<style>
+    <style>
         html, body, footer, div, img {
             background-color: black; /*so that site text legibility is maintained while the background image is loading*/
             color: azure;
@@ -35,15 +35,15 @@
             background-repeat: round;
         }
 
-        body, .nav, .nav-tabs, .nav-item, .atab, .container, .row, .col, footer, .tab-content, .tab-pane {
+        body, .nav, .nav-tabs, .nav-item, .nav-link, .container, .row, .col, footer, .tab-content, .tab-pane {
             background: transparent !important;
         }
 
-            .atab.active {
+            .nav-link.active {
                 color: azure !important;
             }
 
-        a:not(.atab) {
+        a:not(.nav-link) {
             color: azure;
             -webkit-animation: glow 1s ease-in-out infinite alternate;
             -moz-animation: glow 1s ease-in-out infinite alternate;
@@ -63,7 +63,7 @@
         a:hover {
             color: deepskyblue;
         }
-    </style>-->
+    </style>
 </head>
 <body>
     <div class="row">
@@ -91,15 +91,15 @@
 
     <div class="container">
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="work">
+            <div class="tab-pane active" id="work">
                 <div class="row" id="projectList-ByWork">
                     ho ho
                 </div>
             </div>
-            <div class="tab-pane fade" id="subject">
+            <div class="tab-pane" id="subject">
                 <div class="row" id="projectList-BySubject">yo yo</div>
             </div>
-            <div class="tab-pane fade" id="fiction">
+            <div class="tab-pane" id="fiction">
                 <div class="row" id="projectList-ByFiction"></div>
             </div>
         </div>
