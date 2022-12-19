@@ -35,7 +35,7 @@
             background-repeat: round;
         }
 
-        #subject, #fiction{
+        #projectList-BySubject, #projectList-ByFiction {
             opacity: 0.85;
         }
 
@@ -124,6 +124,7 @@
                 pageList = pageList.filter(link => link != '');
                 displayProjectsByWork(); //The code within is integrated here like this so that it'll be executed only after the async ajax code above has been executed.
                 displayProjectsBySubject(); // ^
+                displayProjectsByFiction(); //^
             }
         })
 
