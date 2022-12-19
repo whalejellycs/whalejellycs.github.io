@@ -35,6 +35,10 @@
             background-repeat: round;
         }
 
+        #subject, #fiction{
+            opacity: 0.85;
+        }
+
         body, .nav, .nav-tabs, .nav-item, .nav-link, .container, .row, .col, footer, .tab-content, .tab-pane {
             background: transparent !important;
         }
@@ -95,36 +99,17 @@
                 <div class="row" id="projectList-ByWork"></div>
             </div>
             <div class="tab-pane" id="subject">
-                <div class="row" id="projectList-BySubject">yo yo</div>
+                <ul id="projectList-BySubject"></ul>
+                <br />
             </div>
             <div class="tab-pane" id="fiction">
-                <div class="row" id="projectList-ByFiction"></div>
+                <ul id="projectList-ByFiction">
+                    The titles listed for the works of fiction are their native titles.
+                    <br />
+                </ul>
             </div>
         </div>
     </div>
-
-    <!--test-->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Messages</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">uoyoy.</div>
-        <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab" tabindex="0">...</div>
-        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
-    </div>
-    <!--test-->
 
     <br />
     <!-- JavaScript Bundle with Popper; bundling necessary for tab toggling to work -->
@@ -199,6 +184,36 @@
             };
         }
 
+        const fictionListVarNames = ['fiction', 'title'];
+
+        function displayProjectsByFiction() {
+            for (let i = 0; i < pageList.length; i++) {
+                let og = ["fiction", "og:title"];
+                var listVars = { 'fiction': '', 'title': '' };
+                $.ajax({
+                    url: pageList[i],
+                    success: function (response) {
+                        for (let j = 0; j < fictionListVarNames.length; j++) {
+                            let startFinder = response.search(og[j]);
+                            let auxiliaryFinder = response.indexOf("content", startFinder);
+                            startFinder = Math.min(response.indexOf("'", auxiliaryFinder), response.indexOf('"', auxiliaryFinder));
+                            let quoteMark = response[startFinder];
+                            auxiliaryFinder = response.indexOf(quoteMark, startFinder + 1);
+                            listVars[fictionListVarNames[j]] = response.substring(startFinder + 1, auxiliaryFinder);
+                        }
+
+                        $("#projectList-ByFiction").append("<li><div class='row'><div class='col'>" + listVars.fiction + "</div><div class='col'><h5>" +
+                            listVars.title + "</h5 ></div><div class='col'><a href='" +
+                            pageList[i] + "' target='_blank' rel='noopener' class='btn btn-primary'>Blowhole 🌊</a></div ></div><br/></li>");
+
+                        if (i == pageList.length - 1) {
+                            $("#projectList-ByFiction").append("<div style='opacity: 0.85;'>*The original title has other possible layers of meaning. For the sake of brevity, native characters have been omitted on this list in favor of more widely comprehensible English translations of their meanings.</div>");
+                        }
+                    }
+                });
+
+            };
+        }
 
     </script>
     <footer align="right" style="font-size:17px">
