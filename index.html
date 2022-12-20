@@ -101,10 +101,12 @@
                 <div class="row" id="projectList-ByWork"></div>
             </div>
             <div class="tab-pane" id="subject">
+                <br />
                 <ul id="projectList-BySubject"></ul>
                 <br />
             </div>
             <div class="tab-pane" id="fiction">
+                <br />
                 <ul id="projectList-ByFiction">
                     The titles listed for the works of fiction are their native titles.
                     <br />
@@ -126,7 +128,7 @@
                 pageList = pageList.filter(link => link != '');
                 displayProjectsByWork(); //The code within is integrated here like this so that it'll be executed only after the async ajax code above has been executed.
                 displayProjectsBySubject(); // ^
-                displayProjectsByFiction(); //^
+                displayProjectsByFiction(); // ^
             }
         })
 
