@@ -105,10 +105,11 @@
                 <br />
             </div>
             <div class="tab-pane" id="fiction">
-                <ul id="projectList-ByFiction">
+                <ul id="projectList-ByFiction" style="margin-bottom:0px">
                     The titles listed for the works of fiction are their native titles.
                     <br />
                 </ul>
+                <div id="fictionNotes" style="margin-top:0px; opacity: 0.85"></div>
             </div>
         </div>
     </div>
@@ -210,7 +211,7 @@
                             pageList[i] + "' target='_blank' rel='noopener' class='btn btn-primary'>Blowhole 🌊</a></div ></div><br/></li>");
 
                         if (i == pageList.length - 1) {
-                            $("#projectList-ByFiction").append("<div style='opacity: 0.85;'>*The original title has other possible layers of meaning. For the sake of brevity, native characters have been omitted on this list in favor of more widely comprehensible English translations of their meanings.</div>");
+                            $("#fictionNotes").append("*The original title has other possible layers of meaning. For the sake of brevity, native characters have been omitted on this list in favor of more widely comprehensible English translations of their meanings.");
                         }
                     }
                 });
