@@ -65,6 +65,9 @@
 
 <div style="position:relative;margin-top:10%;z-index:1"> 
 <p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+<div id="slider-container"></div>
+<div id="plot-container"></div>
   
 <py-script>
 import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
@@ -75,11 +78,7 @@ description = "% of diagnosed/suspected autistic persons",
 style = {'description_width': 'initial'},
 layout = widgets.Layout(width='50%'))
 
-#temp
-from ipywidgets import IntSlider
-from IPython.display import display
-display(IntSlider())
-###
+
 
 Q1byA=pd.DataFrame({'Allistics': {'None of the above': 3,
 'Autistic school teammate': 32,
@@ -149,8 +148,10 @@ def weighted_display(weight=5):
 
 interactive(weighted_display,weight=(0,100))
 output=widgets.interactive_output(weighted_display,{'weight':slider})
-display(slider)
-display(output)
+
+from pyscript import display
+display(slider, target="slider-container")
+display(output, target="plot-container")
 </py-script>
 
 <footer align="right" style="font-size:12px">
