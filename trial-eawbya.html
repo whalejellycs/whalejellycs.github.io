@@ -110,17 +110,7 @@
       pn.Row(slider, pn.bind(callback, slider)).servable(target="slider-container")
 
 
-
-
       import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
-      #from ipywidgets import interactive, widgets
-      #from IPython.display import display
-      #slider = widgets.FloatSlider(value = 5, min = 0, max = 100, readout_format=".2f",
-      description = "% of diagnosed/suspected autistic persons",
-      style = {'description_width': 'initial'},
-      #layout = widgets.Layout(width='50%'))
-
-
 
       Q1byA=pd.DataFrame({'Allistics': {'None of the above': 3,
       'Autistic school teammate': 32,
@@ -192,12 +182,6 @@
       display_output=pn.bind(weighted_display,weight=slider)
 
       pn.pane.Matplotlib(display_output).servable(target="plot-container")
-      <!-- interactive(weighted_display,weight=(0,100))
-output=widgets.interactive_output(weighted_display,{'weight':slider})
-
-from pyscript import display
-display(slider, target="slider-container")
-display(output, target="plot-container") -->
 
     </py-script>
 
