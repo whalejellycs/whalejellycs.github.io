@@ -103,7 +103,7 @@
       pn.extension(sizing_mode="stretch_width")
 
       slider = pn.widgets.FloatSlider(value=5, start=0, end=100, name='% of diagnosed/suspected autistic persons',
-      style={"color":"white"})
+      styles={"color":"white"})
 
       def callback(new):
         return f'{new}%'
