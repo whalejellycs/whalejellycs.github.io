@@ -176,7 +176,7 @@ def weighted_display(weight=5):
     ax.text(-1.1,-0.25,"twitter.com/DramaPhilosophy",ha='left',va='bottom',transform=ax.transAxes,color='goldenrod')
     plt.subplots_adjust(left = 0.5,bottom=0.185)
     #plt.show()
-  return fig
+    return fig
 
 pn.pane.matplotlib(fig).servable(target="plot-container")
   <!-- interactive(weighted_display,weight=(0,100))
