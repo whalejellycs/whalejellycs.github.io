@@ -180,7 +180,7 @@ def weighted_display(weight=5):
 
 display_output=pn.bind(weighted_display,weight=slider.value)
 
- pn.pane.Matplotlib(display_output).servable(target="plot-container")
+pn.pane.Matplotlib(display_output).servable(target="plot-container")
   <!-- interactive(weighted_display,weight=(0,100))
 output=widgets.interactive_output(weighted_display,{'weight':slider})
 
