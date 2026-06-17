@@ -91,17 +91,17 @@ import panel as pn
 
 pn.extension(sizing_mode="stretch_width")
 
-slider = pn.widgets.FloatSlider(start=0, end=10, name='Amplitude')
+slider = pn.widgets.FloatSlider(value=5, start=0, end=100, name='% of diagnosed/suspected autistic persons')
 
 def callback(new):
-    return f'Amplitude is: {new}'
+    return f'{new}%'
 
-pn.Row(slider, pn.bind(callback, slider)).servable(target="plot-container")
-print("eaw")
+pn.Row(slider, pn.bind(callback, slider)).servable(target="slider-container")
+
 
 
   
-<!-- import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
+import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
 #from ipywidgets import interactive, widgets
 #from IPython.display import display
 #slider = widgets.FloatSlider(value = 5, min = 0, max = 100, readout_format=".2f",
@@ -175,7 +175,7 @@ def weighted_display(weight=5):
     ax.text(-1.1,-0.2,"© Of Dough Pops and Dichromatic Panes",ha='left',va='bottom',transform=ax.transAxes,color='goldenrod')
     ax.text(-1.1,-0.25,"twitter.com/DramaPhilosophy",ha='left',va='bottom',transform=ax.transAxes,color='goldenrod')
     plt.subplots_adjust(left = 0.5,bottom=0.185)
-    plt.show()  -->
+    plt.show() 
 
 <!-- interactive(weighted_display,weight=(0,100))
 output=widgets.interactive_output(weighted_display,{'weight':slider})
@@ -183,6 +183,8 @@ output=widgets.interactive_output(weighted_display,{'weight':slider})
 from pyscript import display
 display(slider, target="slider-container")
 display(output, target="plot-container") -->
+
+slider.servable(target="slider-container")
 </py-script>
 
 <footer align="right" style="font-size:12px">
