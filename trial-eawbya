@@ -1,0 +1,86 @@
+<html>
+  
+<head>
+    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:creator" content="@DramaPhilosophy"/>
+<meta name="twitter:site" content="@DramaPhilosophy"/>
+<meta property="og:title" content="From Fiction to Life: The Narwhal Boss Poll"/>
+<meta name="twitter:title" content="From Fiction to Life: The Narwhal Boss Poll"/>
+<meta name="description" content="Tool for weighted analysis of Extraordinary Attorney Woo poll results"/>
+<meta property="og:description" content="Tool for weighted analysis of Extraordinary Attorney Woo poll results"/>
+<meta name="twitter:description" content="Tool for weighted analysis of Extraordinary Attorney Woo poll results"/>
+<meta property="og:image" content="https://whalejellycs.github.io/icons/carrot-cake.png"/>
+<meta name="twitter:image:src" content="https://whalejellycs.github.io/icons/carrot-cake.png"/>
+<meta name="twitter:image:width" content="280"/>
+<meta name="twitter:image:height" content="150"/>
+  
+<meta property="subject" content="Weighted data analysis"/>
+<meta property="fiction" content="Eccentric Attorney Woo Young Woo"/>
+    
+<title>From Fiction to Life</title>
+<link rel="icon" type="image/x-icon" href="icons/carrot-cake.png" />
+
+    <style>
+     body   {
+            background-color: black;
+            color: #3d6b53; 
+            font-family: Helvetica
+        }
+      h1, p, pre, #top, a, footer {
+          background-color: black;
+          color: #D0D9CD;
+          font-family: Helvetica
+      }
+        #ready {
+            background-color: rgb(144,238,144);
+            color: rgb(38,79,83);
+            font-family: 'Arial Narrow'
+        }
+    </style>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+
+<script type="module" src="https://pyscript.net/releases/2026.6.1/core.js"></script>
+
+</head>
+  
+
+<body >
+<py-config>packages=["pandas","matplotlib","seaborn","urllib"]</py-config>
+    
+<div style="position: fixed; top: 0; left: 5px;height:10%;z-index:2;" id="top">
+    <h1 style="margin-bottom:0">Extraordinary Attorney Woo Poll Analysis</h1>
+    <p style="margin-top: 0; margin-bottom: 0">
+        <br />
+        When the status shows <span id="ready">&nbsp;READY&nbsp;</span>, click the run button and wait for the graph to appear. Move the slider bar around or click on its adjacent value and type in a new percentage, with another wait for each re-rendering, to see the potential impact of demographics on the reported sentiments.
+        The actual percentage of diagnosed/suspected autistic respondents is 21.1%. Everyone's participation is greatly appreciated.
+    </p>
+    <p style="margin-top:0" align="center">✨</p>
+</div>
+
+<div style="position:relative;margin-top:10%;z-index:1"> 
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+  
+<py-script>
+import urllib.request
+analysis = urllib.request.urlopen('https://whalejellycs.github.io/eawbya.txt')
+analysis_str = analysis.read()
+analysis.close()
+
+exec(analysis_str)
+</py-script>
+
+<footer align="right" style="font-size:12px">
+  <a href="https://twitter.com/DramaPhilosophy?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @DramaPhilosophy</a>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+     <br />
+     <br />
+     <a href="https://www.flaticon.com/free-icons/carrot-cake">Tab icon</a>: <a href="https://www.flaticon.com/authors/kanyanee-watanajitkasem">Kanyanee Watanajitkasem</a> @ <a href="https://www.flaticon.com/">Flaticon</a>
+ </footer>
+</body>
+
+</html>
