@@ -43,10 +43,14 @@
     </style>
     
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />-->
-<link rel="stylesheet" href="https://pyscript.net/releases/2026.6.1/core.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 
-<script type="module" src="https://pyscript.net/releases/2026.6.1/core.js"></script>
+         <!-- PyScript CSS -->
+        <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+
+ <!-- This script tag bootstraps PyScript -->
+        <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+
 
           <!-- bokeh scripts -->
         <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.3.js"></script>
@@ -63,7 +67,7 @@
   
 
 <body >
-<py-config>packages=["pandas","matplotlib","seaborn","panel","bokeh"]</py-config>
+<py-config>packages=["pandas","matplotlib","seaborn","panel==1.7.5", "bokeh==3.6.3"]</py-config>
     
 <div style="position: fixed; top: 0; left: 5px;height:10%;z-index:2;" id="top">
     <h1 style="margin-bottom:0">Extraordinary Attorney Woo Poll Analysis</h1>
