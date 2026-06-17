@@ -1,3 +1,4 @@
+<!--trial-->
 <html>
   
 <head>
@@ -47,11 +48,22 @@
 
 <script type="module" src="https://pyscript.net/releases/2026.6.1/core.js"></script>
 
+          <!-- bokeh scripts -->
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.3.js"></script>
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.6.3.min.js"></script>
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.6.3.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+
+        <!-- panel scripts -->
+        <script defer src="https://cdn.jsdelivr.net/npm/@holoviz/panel@1.7.5/dist/panel.min.js"></script>
+
 </head>
   
 
 <body >
-<py-config>packages=["pandas","matplotlib","seaborn","ipywidgets","IPython"]</py-config>
+<py-config>packages=["pandas","matplotlib","seaborn","panel","bokeh"]</py-config>
     
 <div style="position: fixed; top: 0; left: 5px;height:10%;z-index:2;" id="top">
     <h1 style="margin-bottom:0">Extraordinary Attorney Woo Poll Analysis</h1>
@@ -70,13 +82,26 @@
 <div id="plot-container"></div>
   
 <py-script>
+import panel as pn
+
+pn.extension(sizing_mode="stretch_width")
+
+slider = pn.widgets.FloatSlider(start=0, end=10, name='Amplitude')
+
+def callback(new):
+    return f'Amplitude is: {new}'
+
+pn.Row(slider, pn.bind(callback, slider)).servable(target='simple_app')
+
+
+  
 import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
-from ipywidgets import interactive, widgets
-from IPython.display import display
-slider = widgets.FloatSlider(value = 5, min = 0, max = 100, readout_format=".2f",
+#from ipywidgets import interactive, widgets
+#from IPython.display import display
+#slider = widgets.FloatSlider(value = 5, min = 0, max = 100, readout_format=".2f",
 description = "% of diagnosed/suspected autistic persons",
 style = {'description_width': 'initial'},
-layout = widgets.Layout(width='50%'))
+#layout = widgets.Layout(width='50%'))
 
 
 
@@ -146,12 +171,12 @@ def weighted_display(weight=5):
     plt.subplots_adjust(left = 0.5,bottom=0.185)
     plt.show() 
 
-interactive(weighted_display,weight=(0,100))
+<!-- interactive(weighted_display,weight=(0,100))
 output=widgets.interactive_output(weighted_display,{'weight':slider})
 
 from pyscript import display
 display(slider, target="slider-container")
-display(output, target="plot-container")
+display(output, target="plot-container") -->
 </py-script>
 
 <footer align="right" style="font-size:12px">
