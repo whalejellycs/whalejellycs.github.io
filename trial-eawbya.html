@@ -71,9 +71,17 @@ import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
 from ipywidgets import interactive, widgets
 from IPython.display import display
 slider = widgets.FloatSlider(value = 5, min = 0, max = 100, readout_format=".2f",
-description = "% of diagnosed/supected autistic persons",
+description = "% of diagnosed/suspected autistic persons",
 style = {'description_width': 'initial'},
 layout = widgets.Layout(width='50%'))
+
+  #temp
+
+  from ipywidgets import IntSlider
+from IPython.display import display
+
+display(IntSlider())
+  ###
 
 Q1byA=pd.DataFrame({'Allistics': {'None of the above': 3,
 'Autistic school teammate': 32,
