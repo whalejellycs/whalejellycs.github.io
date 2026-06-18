@@ -1,0 +1,197 @@
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@DramaPhilosophy" />
+  <meta name="twitter:site" content="@DramaPhilosophy" />
+  <meta property="og:title" content="From Fiction to Life: The Narwhal Boss Poll" />
+  <meta name="twitter:title" content="From Fiction to Life: The Narwhal Boss Poll" />
+  <meta name="description" content="Tool for weighted analysis of Extraordinary Attorney Woo poll results" />
+  <meta property="og:description" content="Tool for weighted analysis of Extraordinary Attorney Woo poll results" />
+  <meta name="twitter:description" content="Tool for weighted analysis of Extraordinary Attorney Woo poll results" />
+  <meta property="og:image" content="https://whalejellycs.github.io/icons/carrot-cake.png" />
+  <meta name="twitter:image:src" content="https://whalejellycs.github.io/icons/carrot-cake.png" />
+  <meta name="twitter:image:width" content="280" />
+  <meta name="twitter:image:height" content="150" />
+
+  <meta property="subject" content="Weighted data analysis" />
+  <meta property="fiction" content="Eccentric Attorney Woo Young Woo" />
+
+  <title>From Fiction to Life</title>
+  <link rel="icon" type="image/x-icon" href="icons/carrot-cake.png" />
+
+  <style>
+    body {
+      background-color: black;
+      color: #3d6b53;
+      font-family: Helvetica
+    }
+
+    h1,
+    p,
+    pre,
+    #top,
+    a,
+    footer {
+      background-color: black;
+      color: #D0D9CD;
+      font-family: Helvetica
+    }
+
+    #ready {
+      background-color: rgb(144, 238, 144);
+      color: rgb(38, 79, 83);
+      font-family: 'Arial Narrow'
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+
+  <!-- PyScript CSS -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+
+  <!-- This script tag bootstraps PyScript -->
+  <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+
+
+  <!-- bokeh scripts -->
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.6.3.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.6.3.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.6.3.min.js"></script>
+  <script type="text/javascript">
+    Bokeh.set_log_level("info");
+  </script>
+
+  <!-- panel scripts -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@holoviz/panel@1.7.5/dist/panel.min.js"></script>
+
+</head>
+
+
+<body>
+  <py-config>packages=["pandas","matplotlib","seaborn","panel==1.7.5", "bokeh==3.6.3"]</py-config>
+
+  <div style="position: fixed; top: 0; left: 5px;height:10%;z-index:2;" id="top">
+    <h1 style="margin-bottom:0">Extraordinary Attorney Woo Poll Analysis</h1>
+    <p style="margin-top: 0; margin-bottom: 0">
+      <br />
+      Move the slider bar around or click on its adjacent value and type in a new percentage, with another wait for each
+      re-rendering, to see the potential impact of demographics on the reported sentiments.
+      The actual percentage of diagnosed/suspected autistic respondents is 21.1%. Everyone's participation is greatly
+      appreciated.
+    </p>
+    <p style="margin-top:0" align="center">✨</p>
+  </div>
+
+  <div style="position:relative;margin-top:10%;z-index:1">
+    <p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+
+
+    <div id="slider-container"></div>
+    <div id="plot-container"></div>
+
+    <py-script>
+      import panel as pn
+
+      pn.extension(sizing_mode="stretch_width")
+
+      slider = pn.widgets.FloatSlider(value=5, start=0, end=100, name='% of diagnosed/suspected autistic persons',
+      styles={"color":"white"})
+
+      pn.Row(slider).servable(target="slider-container")
+
+
+      import pandas as pd, seaborn as sn, matplotlib.pyplot as plt
+
+      Q1byA=pd.DataFrame({'Allistics': {'None of the above': 3,
+      'Autistic school teammate': 32,
+      'Autistic housemate': 22,
+      'Autistic subordinate': 25,
+      'Autistic co-worker of the same rank in the same work unit': 35,
+      'Autistic boss': 24,
+      'Autistic blue-collar worker serving you': 30,
+      'Autistic white-collar worker serving you': 31,
+      'Autistic short-term romantic partner': 13,
+      'Autistic long-term romantic partner': 12,
+      'Autistic adoptive child': 15,
+      'Autistic child-in-law': 19,
+      'Higher taxes to support the autistic community': 26,
+      'Diverting tax revenue from other critical areas \nto support the autistic community': 22},
+      'Autistics': {'None of the above': 1,
+      'Autistic school teammate': 7,
+      'Autistic housemate': 7,
+      'Autistic subordinate': 7,
+      'Autistic co-worker of the same rank in the same work unit': 7,
+      'Autistic boss': 6,
+      'Autistic blue-collar worker serving you': 5,
+      'Autistic white-collar worker serving you': 5,
+      'Autistic short-term romantic partner': 5,
+      'Autistic long-term romantic partner': 7,
+      'Autistic adoptive child': 5,
+      'Autistic child-in-law': 6,
+      'Higher taxes to support the autistic community': 9,
+      'Diverting tax revenue from other critical areas \nto support the autistic community': 7}},index=['None of the above',
+      'Autistic school teammate',
+      'Autistic housemate',
+      'Autistic subordinate',
+      'Autistic co-worker of the same rank in the same work unit',
+      'Autistic boss',
+      'Autistic blue-collar worker serving you',
+      'Autistic white-collar worker serving you',
+      'Autistic short-term romantic partner',
+      'Autistic long-term romantic partner',
+      'Autistic adoptive child',
+      'Autistic child-in-law',
+      'Higher taxes to support the autistic community',
+      'Diverting tax revenue from other critical areas \nto support the autistic community'],columns=["Allistics","Autistics"])
+
+      sn.set()
+      plt.style.use('dark_background')
+
+      def weighted_display(weight=5):
+        '''weight: weight in percentage'''
+        fig=plt.figure()
+        ax=plt.subplot(1,1,1)
+        Q1byWdisplayDF=((100-weight)/100*Q1byA.iloc[:,0]/45+weight/100*Q1byA.iloc[:,1]/12)*100
+        Q1byWdisplayDF=Q1byWdisplayDF.sort_values()
+        ax=Q1byWdisplayDF.plot.barh(ax=ax,legend=None,color='orangered',figsize=(12,9))
+
+        plt.xlabel('% of the weighted combination of eligible respondents')
+
+        ax.set_title("Which of the following, if any, has watching Extraordinary Attorney Woo \nmade you more willing to accept?\n\n\n",
+        color='lightgreen')
+        ax.text(0.5,1.05,"({:.1f}% Allistics + {:.1f}% Diagnosed/suspected Autistics, Multiple options possible)".format(100-weight,weight),
+        ha='center',va='top',transform=ax.transAxes,color='g')
+        ax.text(-1.1,0,"Total number of eligible respondents:{}".format(57),ha='left',va='bottom',transform=ax.transAxes,color='y')
+        ax.text(-1.1,-0.1,"(Total number of respondents:{})".format(57+1),ha='left',va='bottom',transform=ax.transAxes,color='y')
+        ax.text(-1.1,-0.2,"© Of Dough Pops and Dichromatic Panes",ha='left',va='bottom',transform=ax.transAxes,color='goldenrod')
+        ax.text(-1.1,-0.25,"https://dramaphilosophy.bsky.social",ha='left',va='bottom',transform=ax.transAxes,color='goldenrod')
+        plt.subplots_adjust(left = 0.5,bottom=0.185)
+        plt.close()
+        return fig
+
+      display_output=pn.bind(weighted_display,weight=slider)
+
+      pn.pane.Matplotlib(display_output).servable(target="plot-container")
+
+    </py-script>
+
+    <footer align="right" style="font-size:12px">
+      <a href="https://twitter.com/DramaPhilosophy?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+        data-show-count="false">Follow @DramaPhilosophy</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <br />
+      <br />
+      <a href="https://www.flaticon.com/free-icons/carrot-cake">Tab icon</a>: <a
+        href="https://www.flaticon.com/authors/kanyanee-watanajitkasem">Kanyanee Watanajitkasem</a> @ <a
+        href="https://www.flaticon.com/">Flaticon</a>
+    </footer>
+</body>
+
+</html>
